@@ -1,6 +1,11 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python,visualstudiocode,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,visualstudiocode,windows
 
+# 커스텀 깃 이그노어
+
+git_1일차_공유.pdf
+마크다운자료.pdf
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
