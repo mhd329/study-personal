@@ -2,9 +2,9 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,visualstudiocode,windows
 
 # 커스텀 깃 이그노어
+# 최종 수정일 2022 07 08
 
-git_1일차_공유.pdf
-마크다운자료.pdf
+수업 자료/
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
