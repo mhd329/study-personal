@@ -20,15 +20,15 @@
 
 ###### : [untracked](#1-untracked) == 갓 만든 식빵
 
-###### : [tracked](#2-tracked) == 판매 등록이 안된, 진열대에 올라가 있는 판매 전의 식빵
+###### : [tracked](#2-tracked) == 판매 등록이 안된, 진열대에 올라가(add) 있는 판매 전의 식빵
 
-###### : [commit 1](#3-git-commit--m-메세지-1) == 식빵에 가격표를 달고 판매등록함
+###### : [commit 1](#3-git-commit--m-메세지-1) == 식빵에 가격표를 달고 판매등록함(commit)
 
-###### : [unmodified](#4-unmodified) == 식빵에서 샌드위치로 개선하여 만듦
+###### : [unmodified](#4-unmodified) == 기존에 팔리고 있던 식빵
 
-###### : [modified](#5-modified) == 진열대에 올려놓기만 해놓은, 아직 팔고있지 않은 샌드위치]
+###### : [modified](#5-modified) == 식빵에 재료를 추가하여 샌드위치로 만들고 진열대에 올림(add)
 
-###### : [commit 2](#6-git-commit--m-메세지-2) == 샌드위치를 판매 등록
+###### : [commit 2](#6-git-commit--m-메세지-2) == 샌드위치를 판매 등록(commit)
 
 ---
 
