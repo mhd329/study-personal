@@ -138,28 +138,26 @@ print("sort 미사용 :",res)
 
 # max() 함수 사용 금지
 '''
-set_of_n = set(input().split())
+set_of_n = set(input().split()) # 중복되는 값을 제거
 list_of_n = list(set_of_n)
 for i in range(len(list_of_n)):
-    list_of_n[i] = int(list_of_n[i])
+    list_of_n[i] = int(list_of_n[i]) # 리스트 원소 정수화
 
 # 1) sort 사용
 list_of_n.sort(reverse=True)
 print("sort 사용 :",list_of_n[1])
 
-# 2) sort 미사용 # [-70, -30, -90, -50] [-30, -50, -70, -90, #20]
-first = list_of_n[0] # -70
-second = list_of_n[1] # -30
-for i in list_of_n:
-    if (i < 0) and (first < 0):
+# 2) sort 미사용
+first = list_of_n[0]
+second = list_of_n[1] # [0] 을 헀을 때 리스트 전체가 음수이고
+for i in list_of_n:   # 처음 들어오는 값이 제일 큰 값인 경우
+    if (i < 0) and (first < 0): # second 값이 first 랑 같아져버리기 때문에 다르게 해야한다.
         if i < first:
             if i > second:
                 second = i
-            else:
-                pass
-    elif i > first:
-        second = first # -70
-        first = i # -30
+    if i > first: # else 를 해버리면 second 가 first 랑 같아져버리기 때문에 안된다.
+        second = first
+        first = i
         
 print("sort 미사용 :",second)
 '''
