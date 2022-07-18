@@ -203,3 +203,16 @@ if cnt == 0:
 else:
     print(cnt + 1)
 '''
+'''
+n = int(input())
+
+cnt = 0
+if n == 0:
+    print('1')
+else:
+    while n:
+        n //= 10
+        cnt += 1
+    
+    print(cnt)
+'''
