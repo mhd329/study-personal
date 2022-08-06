@@ -12,11 +12,11 @@ for test_case in range(T):
         cell.append([*map(int, sys.stdin.readline().split())])
     
     for j in range(m):
-        for i in range(n - 1, -1, -1): # 4 3 2 1 0
+        for i in range(n - 1, -1, -1):
             if cell[i][j] == 1:
-                while
-                if cell[i][j] == 0 and cell[i - 1][j] == 1:
-                    cell[i][j], cell[i - 1][j] = cell[i - 1][j], cell[i][j]
+                while i + 1 != n and cell[i + 1][j] == 0:
+                    cell[i][j], cell[i + 1][j] = cell[i + 1][j], cell[i][j]
+                    i += 1
                     cnt += 1
                 
     print(cnt)
