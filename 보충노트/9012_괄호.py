@@ -14,8 +14,8 @@ for _ in range(N):
         for _ in range(len(PS)):
             try:
                 if PS[-1] == '(':
-                    PS.pop()
-                    stack.pop()
+                    del PS[-1]
+                    del stack[-1]
                 else:
                     stack.append(PS.pop())
             except IndexError: # PS[-1] 이 닫히는 괄호이면 stack 에서 그에 맞는 열림 괄호가 있어야 하는데 없는 경우 올바른 괄호가 아님
