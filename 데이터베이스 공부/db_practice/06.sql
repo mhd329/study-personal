@@ -1,0 +1,1 @@
+select DISTINCT sido from healthcare;
