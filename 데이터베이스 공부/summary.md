@@ -85,10 +85,16 @@
 - 조회
 
   - ```sql
-    SECECT * FROM examples;
+    SELECT * FROM examples;
     ```
 
   - 특정 테이블의 레코드 정보를 반환
+
+  - ```sql
+    SELECT 연산 AS 연산된 값을 표시할 이름
+    ```
+
+  - 위와 같이 쓰면 복잡한 연산식을 계산하고 출력할 때 필드의 형태로 연산식의 이름을 정해줄 수 있다.
 
 -  terminal view switching
 
