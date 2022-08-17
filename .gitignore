@@ -6,6 +6,7 @@
 
 수업 자료/
 *.sqlite3
+*.csv
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
