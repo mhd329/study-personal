@@ -2,7 +2,7 @@
 
 <br>
 
-### 1. 관계형 데이터베이스
+## 1. 관계형 데이터베이스
 
 <br>
 
@@ -24,7 +24,7 @@
 
 <br>
 
-### 2. SQLite
+## 2. SQLite
 
 <br>
 
@@ -47,7 +47,7 @@
 
 <br>
 
-### 3. SQL
+## 3. SQL
 
 <br>
 
@@ -59,7 +59,7 @@
 
 <br>
 
-### 4. Hello World !
+## 4. Hello World !
 
 <br>
 
@@ -85,6 +85,12 @@
 - 조회
 
   - ```sql
+    .tables
+    ```
+
+  - 모든 테이블의 이름 출력
+
+  - ```sql
     SELECT * FROM examples;
     ```
 
@@ -96,7 +102,7 @@
 
   - 위와 같이 쓰면 복잡한 연산식을 계산하고 출력할 때 필드의 형태로 연산식의 이름을 정해줄 수 있다.
 
--  terminal view switching
+- terminal view switching
 
   - ```sql
     .headers on
@@ -147,11 +153,11 @@
 
 <br>
 
-### 5. CRUD
+## 5. CRUD
 
 <br>
 
-###### 1. Create
+### 1. Create
 
 - INSERT
 
@@ -174,76 +180,92 @@
 
 <br>
 
-###### 2. Read
+### 2. Read
 
-- SELECT
+<br>
 
-  - 테이블에서 데이터 조회
-  - 다양한 절(clause) 과 함께 사용
-  - SELECT +
-    - ORDER BY
-    - DISTINCT
-    - WHERE
-    - LIMIT +
-    - OFFSET
-    - GROUP BY
+#### 1. SELECT
 
-- WHERE
+<br>
 
-  - 특정 조건으로 데이터 조회
-  - if 문
-  - WHERE +
-    - 비교 연산자
-      - == 대신 = 를 쓰는것을 제외하고는 다 똑같음
-    - AND
-    - OR
-    - NOT
-    - 연산자 우선순위를 소괄호를 이용해 적절하게 제어해야 한다.
-  - BETWEEN
-    - WHERE 필드이름 BETWEEN 값1 AND 값2
-      - 값끼리 비교
-  - IN
-    - IN (값1, 값2 ... )
-    - 값들 중 하나라도 일치
-  - LIKE
-    - 비교 문자열과 형태가 일치
-    - 와일드카드 활용
-  - IS NULL / IS NOT NULL
-    - NULL 여부를 확인할 때는 = 대신 IS 사용
-  - 부정 연산자
-    - 같지 않다.
-      - !=, ^=, <>
-    - ~ 와 같지 않다.
-      - NOT 칼럼이름 =
-    - ~ 보다 크지 않다.
-      - NOT 칼럼이름 >
-  - 연산자 우선순위
-    1. 괄호
-    2. NOT
-    3. 비교 연산자, SQL
-    4. AND
-    5. OR
+- 테이블에서 데이터 조회
+- 다양한 절(clause) 과 함께 사용
+- SELECT +
+  - ORDER BY
+  - DISTINCT
+  - WHERE
+  - LIMIT +
+  - OFFSET
+  - GROUP BY
 
-- SQLite 집계 함수
+<br>
 
-  - 각 집합에 대한 계산을 하고 나온 하나의 값을 반환
-  - 여러 행으로부터 하나의 결괏값을 반환
-  - SELECT 구문에서만 사용됨
-    - COUNT()
-    - AVG()
-    - MIN(), MAX()
-    - SUM()
-  - INTEGER 일 때만 사용 가능
+#### 2. WHERE
 
+<br>
+
+- 특정 조건으로 데이터 조회
+- if 문
+- WHERE +
+  - 비교 연산자
+    - == 대신 = 를 쓰는것을 제외하고는 다 똑같음
+  - AND
+  - OR
+  - NOT
+  - 연산자 우선순위를 소괄호를 이용해 적절하게 제어해야 한다.
+- BETWEEN
+  - WHERE 필드이름 BETWEEN 값1 AND 값2
+    - 값끼리 비교
+- IN
+  - IN (값1, 값2 ... )
+  - 값들 중 하나라도 일치
 - LIKE
+  - 비교 문자열과 형태가 일치
+  - 와일드카드 활용
+- IS NULL / IS NOT NULL
+  - NULL 여부를 확인할 때는 = 대신 IS 사용
+- 부정 연산자
+  - 같지 않다.
+    - !=, ^=, <>
+  - ~ 와 같지 않다.
+    - NOT 칼럼이름 =
+  - ~ 보다 크지 않다.
+    - NOT 칼럼이름 >
+- 연산자 우선순위
+  1. 괄호
+  2. NOT
+  3. 비교 연산자, SQL
+  4. AND
+  5. OR
 
-  - 패턴 일치를 기반으로 데이터를 조회
-  - 두 개의 와일드카드
-    - % percent sign
-      - 이 자리에 문자열이 있을 수도, 없을 수도 있다.
-    - _ underscore
-      - 이 자리에 반드시 한 개의 문자가 존재해야 한다.
-  - 와일드카드 사용례
+<br>
+
+#### 3. SQLite 집계 함수
+
+<br>
+
+- 각 집합에 대한 계산을 하고 나온 하나의 값을 반환
+- 여러 행으로부터 하나의 결괏값을 반환
+- SELECT 구문에서만 사용됨
+  - COUNT()
+  - AVG()
+  - MIN(), MAX()
+  - SUM()
+- INTEGER 일 때만 사용 가능
+
+<br>
+
+#### 4. LIKE
+
+<br>
+
+- 패턴 일치를 기반으로 데이터를 조회
+- 두 개의 와일드카드
+  - % percent sign
+    - 이 자리에 문자열이 있을 수도, 없을 수도 있다.
+  - _ underscore
+    - 이 자리에 반드시 한 개의 문자가 존재해야 한다.
+- 와일드카드 사용례
   - 2%
     - 2 로 시작하는 값
   - %2
@@ -258,15 +280,204 @@
     - 2 로 시작하고 중간에 두 자리의 값이 있음
     - 2 로 시작하는 적어도 세 자리의 수
 
-- ORDER BY
+<br>
 
-  - 오름차순, 내림차순 정렬
+#### 5. ORDER BY
 
-  - ASC
+<br>
 
-  - DESC
+- 오름차순, 내림차순 정렬
+
+- ASC
+
+- DESC
+
+- ```sql
+  SELECT 조회할 대상 FROM 테이블 이름 ORDER BY 대상 필드 ASC;
+  SELECT 조회할 대상 FROM 테이블 이름 ORDER BY 대상 필드 DESC;
+  ```
+  
+
+<br>
+
+#### 6. 기본 함수와 연산
+
+<br>
+
+- 문자열 함수
+  - SUBSTR
+    - 문자열 자르기
+    - SUBSTR(문자열, start, length)
+    - 시작 인덱스는 1, 마지막 인덱스는 -1
+  - TRIM
+    - 문자열 공백 제거
+    - TRIM(문자열), LTRIM(문자열), RTRIM(문자열)
+  - LENGTH
+    - 문자열 길이
+    - LENGTH(문자열)
+  - REPLACE
+    - 패턴에 일치하는 부분을 변경
+    - REPLACE(문자열, 패턴, 변경값)
+  - UPPER, LOWER
+    - 대소문자 변경
+    - UPPER(문자열), LOWER(문자열)
+  - ||
+    - 문자열 합치기
+- 숫자 함수
+  - ABS(숫자)
+  - SIGH(숫자)
+    - 부호
+  - MOD(숫자1, 숫자2)
+    - 숫자1을 숫자2로 나눈 나머지
+  - CEIL(숫자), FLOOR(숫자), ROUND(숫자)
+  - POWER(숫자1, 숫자2)
+    - 숫자1의 숫자2 제곱
+  - SQRT(숫자)
+- 산술 연산자
+  - +, -, *, /
+
+<br>
+
+#### 7. GROUP BY
+
+<br>
+
+- SELECT 문의 optional 절
+
+- GROUP BY 를 통해 지정된 어떤 필드를 기준으로 잡고, 어떤 레코드들이 특정 필드상에서 같은 값을 가지고 있는 경우 그 필드를 기준으로 같은 값을 가지는 레코드 끼리 집단화 시킴
+
+- WHERE 절을 통해 어떤 조건으로 필터링 하고 싶은 경우 반드시 WHERE 뒤에 작성해야 함
+
+  - WHERE 연산이 먼저 이루어짐
+
+- 집계함수와 활용하였을 때 의미가 있다.
+
+- 그룹화된 각각의 그룹이 하나의 집합으로 집계함수의 인수로 넘겨진다.
 
   - ```sql
-    SELECT 조회할 대상 FROM 테이블 이름 ORDER BY 대상 필드 ASC;
-    SELECT 조회할 대상 FROM 테이블 이름 ORDER BY 대상 필드 DESC;
+    SELECT * FROM users GROUP BY last_name;
     ```
+
+  - ```sql
+    SELECT last_name "성", COUNT(*) FROM users GROUP BY "성";
+    ```
+
+- GROUP BY 절에 명시하지 않은 컬럼은 별도로 지정할 수 없음
+
+  - 그룹마다 하나의 행을 출력하게 되므로 집계함수 등을 활용해야 한다.
+
+- 결과는 정렬되지 않는다.
+
+  - ORDER BY 를 쓰는것이 원칙
+
+- HAVING
+
+  - 집계함수는 연산의 순서상 WHERE 의 조건으로 필터링 할 수 없음
+
+  - HAVING 을 활용하여 조건을 정해준다.
+
+    - ```sql
+      SELECT * FROM 테이블 이름 GROUP BY 컬럼1, 컬럼2 HAVING 그룹 조건;
+      ```
+
+- SELECT 문장 실행 순서
+
+  1. FROM
+  2. WHERE
+  3. GROUP BY
+  4. HAVING
+  5. SELECT
+  6. ORDER BY
+  7. LIMIT / OFFSET
+
+<br>
+
+#### 8. ALTER TABLE
+
+<br>
+
+- 테이블 이름 변경
+
+- 새로운 column 추가
+
+  - 이미 필드가 정의된 테이블에 이미 레코드가 추가되어있는 상태라면, 그 이후에 새로운 컬럼을 추가할 경우 NOT NULL 형태의 컬럼은 추가할 수 없다.
+
+  - 레코드 라는 것은 해당 행에 열의 스키마 형식에 맞게 작업을 수행하고 난 결과를 나타내는데, 특정 행이 레코드된 상태에서 세로방향으로 NOT NULL 필드를 만들 때 아무 값이라도 써 넣어 줘야 레코드 된 행, 즉 전체의 행이 온전한 상태를 유지할 수 있기 때문이다.
+
+  - 즉 NOT NULL 은 해당 필드의 스키마일 뿐이고 실제 들어가는 값은 없기 때문에 오류가 난다고 볼 수 있다.
+
+  - 비어있지 말라고 설정을 해주지만 정작 주는 값은 없기때문에 비어버리게 되는 것이다 !!
+
+  - 이 경우 NOT NULL 형식을 피해서 만들거나,
+
+  - 기본 값 DEFAULT 를 설정하면 된다.
+
+    - ```sql
+      -- 방법 1
+      ALTER TABLE 테이블 이름 ADD COLUMN 컬럼 이름 TEXT;
+      -- 방법 2
+      ALTER TABLE 테이블 이름 ADD COLUMN 컬럼 이름 TEXT NOT NULL DEFAULT 기본 값;
+      ```
+
+- column 이름 수정
+
+- column 삭제
+
+#### 9. CASE
+
+- 특정 상황에서 데이터를 변환하여 활용할 수 있음
+
+- ```sql
+  SELECT
+  	CASE
+  		WHEN 조건식 THEN 식
+  		WHEN 조건식 THEN 식
+  		ELSE 식
+  	END AS ""
+  ```
+
+- ELSE 를 생략하는 경우 NULL 이 지정됨
+
+<br>
+
+#### 10.  서브쿼리
+
+<br>
+
+- 특정 값을 메인 쿼리에 반환하여 활용하는 것
+
+- 실제 테이블에 없는 기준을 이용한 검색이 가능함
+
+- 소괄호로 감싸서 구분해준다
+
+- 서브쿼리는 메인 쿼리의 칼럼을 모두 사용할 수 있지만 그 반대의 경우는 불가능하다.
+
+- ```sql
+  SELECT *
+  FROM 테이블
+  WHERE 컬럼1 =
+  (
+      SELECT 컬럼1
+      FROM 테이블
+  );
+  ```
+
+- 단일 행 서브쿼리
+
+  - 서브쿼리의 결과가 없거나 한 개인 경우
+  - 단일 행 비교 연산자와 함께 사용
+    - =
+    - <
+    - <=
+    - \>=
+    - <>
+
+- 다중 행 서브쿼리
+
+  - 서브쿼리 결과가 두 개 이상인 경우
+  - 다중행 비교 연산자와 함께 사용
+    - IN
+    - EXISTS
+    - 그 외
+
+- 다중 칼럼 서브쿼리
