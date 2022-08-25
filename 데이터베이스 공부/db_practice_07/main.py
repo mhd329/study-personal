@@ -24,19 +24,20 @@ director_list =\
     {"name" : "김철수", "debut": "2022-01-01", "country" : "KOR"}
     ]
 
-for i in range(len(director_list)):
+for i in director_list:
     director = Director()
-    director.name = director_list[i]["name"]
-    director.debut = director_list[i]["debut"]
-    director.country = director_list[i]["country"]
+    director.name = i["name"]
+    director.debut = i["debut"]
+    director.country = i["country"]
     director.save()
 
 # 04
 genre_list = ["액션", "드라마", "사극", "범죄", "스릴러", "SF", "무협", "첩보", "재난"]
 
-for j in range(len(genre_list)):
+for j in genre_list:
     genre = Genre()
-    genre.title = genre_list[j]
+    genre.title = j
+    genre.save()
 
 # 05
 directors = Director.objects.all()
