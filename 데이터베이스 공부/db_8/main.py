@@ -237,3 +237,15 @@ for movie in movies:
     print(movie.opening_date, end = ' ')
     print(movie.running_time, end = ' ')
     print(movie.screening)
+
+# test 13번 역참조
+
+mr_bong = Director.objects.get(name = "봉준호")
+bongs_movies = mr_bong.movie_set.all().order_by("opening_date")
+for movie in bongs_movies:
+    print(movie.director.name, end = ' ')
+    print(movie.genre.title, end = ' ')
+    print(movie.title, end = ' ')
+    print(movie.opening_date, end = ' ')
+    print(movie.running_time, end = ' ')
+    print(movie.screening)
