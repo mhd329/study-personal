@@ -11,6 +11,7 @@
   - keys, values 간의 관계를 table 로 정리한 것
 - schema
   - 자료의 구조, 표현 방법, 관계등의 표현 방식에 대한 약속의 집합
+  - 데이터 베이스 안에 테이블들이 들어가고 그 테이블에 대한 일종의 생성 규칙
 - table
   - 열(field) 과 행(record) 의 모습으로 표현되어지는 데이터들의 집합
   - column
@@ -481,3 +482,344 @@
     - 그 외
 
 - 다중 칼럼 서브쿼리
+
+<br>
+
+#### 11. JOIN
+
+<br>
+
+- 관계형 데이터베이스의 가장 큰 장점이자 핵심 기능
+- 테이블을 나눠서 데이터를 저장하고 JOIN 으로 테이블끼리 결합하여 출력하는데 활용
+- 기본키 PK 와 외래키 FK 값의 관계에 의해 결합
+- 대표적 JOIN
+  - INNER JOIN
+    - 두 테이블에 조건이 주어졌을 때 모두 일치하는 행만 반환
+    - 교집합
+  - OUTER JOIN
+    - 동일한 값이 없는 행도 반환
+    - 두 집합 중 교집합과 나머지 한쪽에 해당하는 부분
+    - 기준에 따라 LEFT / RIGHT / FULL 을 지정
+  - CROSS JOIN
+    - 모든 데이터의 조합
+    - JOIN 이 가능한 모든 경우의 수
+
+<br>
+
+#### 12. 모델링
+
+<br>
+
+- 데이터베이스의 구조나 형식으로 모델 구조만 보고 어떤 데이터를 다루는지 알 수 있음
+  - 개념적 데이터 모델링
+    - 데이터의 요구사항을 찾고 분석하는 과정
+    - 핵심 개체 사이의 관계를 찾아내고 표현
+  - 논리적 데이터 모델링
+    - 데이터베이스 설계 프로세스의 과정으로 정보의 논리적인 구조와 규칙을 명확하게 표현하는 기법/과정
+  - 물리적 데이터 모델링
+    - 논리적 데이터 모델이 데이터 저장소로서 어떻게 실제로 저장될 것인가
+- ERD - Entity Relation Diagram
+  - 개체 관계 모델
+  - 주요 용어
+    - 엔터티
+      - 업무가 관여하는 정보
+    - 속성
+      - 언터티가 가지는 성격
+      - 데이터 타입과 크기 및 제약사항 지정
+    - 관계
+      - 엔터티 간의 관계, 연관성
+- ERD
+  - 개체 관계 모델
+  - 관계
+    - 카디널리티
+    - 수적 관계
+      - 1:1 관계
+        - A는 B를 하나 가진다, B는 A를 하나 가진다
+    - 옵셔널리티
+    - 1 필수 / 0 선택
+- 정규화
+  - 데이터베이스 테이블을 설계하는 과정에서 중복성을 제거하여 성능을 향상
+  - 조회하는 경우 정규화가 안되어있으면 너무 커다란 데이터를 모두 조회해야 하기 때문에 비 효율적이다.
+  - 정규화를 하여 적당한 구분단위로 크기를 조정하여 분류해두면 조회할 때 효율적이다.
+  - 정규화의 종류
+    - 제 1 정규화
+      - 도메인의 원자값
+      - 한 속성에 여러 개의 속성이 포함
+      - 같은 유형의 속성이 여러 개로 나눠져 있는 경우 제거
+    - 제 2 정규화
+      - 부분적 함수 종속성 제거
+      - PK 가 아닌 모든 칼럼은 PK 에 종속되도록 규정
+    - 제 3 정규화
+      - 이행적 함수 종속성 제거
+      - X >>> Y 그리고 Y >>> Z
+      - 일반 속성 간의 함수 종속 관계가 존재하지 않아야 함
+
+<br>
+
+#### 13. ORM
+
+<br>
+
+- Object Relation Mapping
+
+  - 객체 지향 프로그래밍 언어를 사용하여 호환되지 않는 유형의 시스템 간의 데이터를 변환하는 프로그래밍 기술
+  - 파이썬에서는 SQLAlchemy, peewee 등 라이브러리가 있으며 Django 프레임워크 에서는 내장 Django ORM 을 활용
+  - Object 로 DB를 조작한다.
+
+- 모델 설계 및 반영
+
+  1. 클래스를 생성하여 내가 원하는 DB 의 구조를 만든다.
+  2. 클래스의 내용으로 DB 에 반영하기 위한 마이그레이션 파일을 생성한다.
+     - make migrations
+     - `python manage.py makemigrations`
+  3. DB 에 migrate 한다.
+     - `python manage.py migrate`
+
+- Migration
+
+  - 마이그레이션
+  - 모델에 생긴 변화를 DB 에 반영하기 위한 방법
+  - 마이그레이션 파일을 만들어 DB 에 스키마를 반영한다.
+
+- DB 조작
+
+  - ClassName.Manager.QuerySet API
+
+    - genre 라는 테이블이 있을 때,
+    - `Genre.objects.all()`
+
+  - Create
+
+    1. create 메서드 활용
+
+       - genre 라는 테이블이 있을 때,
+
+       - `Genre.objects.create(name = "발라드")`
+
+    2. 인스턴스로 조작
+
+       ```python
+       # genre 라는 테이블이 있을 때
+       genre = Genre()
+       genre.name = "발라드"
+       genre.save()
+       ```
+
+  - Read
+
+    1. 전체 데이터 조회
+       - `Genre.objects.all()`
+    2. 일부 데이터 조회 / get
+       - `Genre.objects.get(id = 1)`
+       - 단일 객체를 불러올 때 사용
+    3. 일부 데이터 조회 / filter
+       - `Genre.objects.filter(id = 1)`
+       - 여러 객체를 불러올 때 사용
+
+  - Update
+
+    ```python
+    # genre 라는 테이블이 있을 때
+    genre = Genre.objects.get(id = 1) # genre.name >>> 발라드
+    genre.name = "트로트" # genre.name >>> 트로트
+    genre.save()
+    ```
+
+  - Delete
+
+    ```python
+    # genre 라는 테이블이 있을 때
+    genre = Genre.objects.get(id = 1)
+    genre.delete()
+    ```
+
+<br>
+
+#### 14. QuerySet API
+
+<br>
+
+- gt / gte
+
+  - greater then / greater then equal
+
+    ```python
+    Entry.objects.filter(id__gt = 4)
+    # SELECT ... WHERE id > 4;
+
+    Entry.objects.filter(id__gte = 4)
+    # SELECT ... WHERE id >= 4;
+    ```
+
+- lt / lte
+
+  - less then / less then equal
+
+    ```python
+    Entry.objects.filter(id__lt = 4)
+    Entry.objects.filter(id__lte = 4)
+    
+    # SELECT ... WHERE id < 4;
+    # SELECT ... WHERE id <= 4;
+    ```
+
+
+- in
+
+  ```python
+  Entry.objects.filter(id__in = [1, 3, 4])
+  Entry.objects.filter(headline__in = "abc")
+  
+  # SELECT ... WHERE id IN (1, 3, 4);
+  # SELECT ... WHERE headline IN ('a', 'b', 'c');
+  ```
+
+- startswith / istartswith
+
+  ```python
+  Entry.objects.filter(headline__startswith = "Lennon")
+  Entry.objects.filter(headline__istartswith = "Lennon") # 대소문자 구분 X
+  
+  # SELECT ... WHERE headline LIKE "Lennon%";
+  # SELECT ... WHERE headline ILIKE "Lennon%" 대소문자 구분 X
+  ```
+
+- endswith
+
+  ```python
+  Entry.objects.filter(headline__endswith = "Lennon")
+  Entry.objects.filter(headline__iendswith = "Lennon")
+  
+  # SELECT ... WHERE headline LIKE "%Lennon";
+  # SELECT ... WHERE headline ILIKE "%Lennon";
+  ```
+
+- contains
+
+  ```python
+  Entry.objects.get(headline__contains = "Lennon")
+  Entry.objects.get(headline__icontains = "Lennon")
+  
+  # SELECT ... WHERE headline LIKE "%Lennon%";
+  # SELECT ... WHERE headline ILIKE "%Lennon%";
+  ```
+
+- range
+
+  ```python
+  import datetime
+  start_date = datetime.date(2005, 1, 1)
+  end_date = datetime.date(2005, 3, 31)
+  Entry.objects.filter(pub_date__range = (start_date, end_date))
+  
+  # SELECT ... WHERE pub_date
+  # BETWEEN '2005-01-01' and '2005-03-31';
+  ```
+
+- 복합 활용
+
+  ```python
+  inner_qs = Blog.objects.filter(name__contains = "Cheddar")
+  entries = Entry.objects.filter(blog__in = inner_qs)
+  
+  # SELECT ... 
+  # WHERE blog.id IN
+  #	(SELECT id FROM ... WHERE NAME LIKE "%Cheddar%")
+  ```
+
+- 활용
+
+  ```python
+  Entry.objects.all()[0]
+  
+  # SELECT ... 
+  # LIMIT 1;
+  ```
+
+  ```python
+  Entry.objects.order_by("id")
+  
+  # SELECT ... 
+  # ORDER BY id;
+  ```
+
+  ```python
+  Entry.objects.order_by("-id")
+  
+  # SELECT ... 
+  # ORDER BY id DESC;
+  ```
+
+<br>
+
+#### 15. ORM 확장
+
+<br>
+
+- 어떤 테이블이 다른 테이블로부터 FK키를 받아오면서 구성될 때 종속관계가 있다고 할 수 있다.
+
+  ```python
+  class Genre(models.Model):
+  	name = models.CharField(max_length = 30)
+  
+  class Artist(models.Model):
+  	name = models.CharField(max_length = 30)
+  	debut = models.DateField()
+  
+  class Album(models.Model):
+  	name = models.CharField(max_length =30)
+  	genre = models.ForeignKey('Genre', on_delete = models.CASCADE) # 종속
+  	artist = models.ForeignKey('Artist', on_delete = models.CASCADE) # 종속
+  ```
+
+  - 이와 같이 테이블을 구성하면 Album 테이블에는
+    - name 필드와,
+    - genre 대신 genre_id,
+    - artist 대신 artist_id,
+
+  - 라는 필드가 생긴다.
+
+- Foreign Key
+  - 외래키
+  - 키를 이용하여 부모 테이블의 유일한 값을 참조
+    - 참조 무결성
+      - 데이터베이스 관계 모델에서 관련된 두 개의 테이블 간의 일관성
+  - 외래 키의 값이 반드시 부모 테이블의 기본 키일 필요는 없지만 유일한 값이어야 한다.
+- models.ForeignKey 필드
+  - 두 개의 필수 위치 인자
+    - Model class
+      - 참조하는 모델
+    - on_delete
+      - 외래 키가 참조하는 객체가 삭제되었을 때 처리하는 방식
+      - CASCADE
+        - 부모 객체(참조된 객체) 가 삭제 되었을 때 이를 참조하는 객체도 삭제
+      - PROTECT
+        - 삭제되지 않음
+      - SET_NULL
+        - NULL 설정
+      - SET_DEFAULT
+        - 기본 값 설정
+
+- 참조와 역참조
+
+  ```python
+  # 참조
+  album = Album.objects.get(id = 1)
+  album.artist
+  # <Artist: Artist object (1)>
+  album.genre
+  # <Genre: Genre object (1)>
+  
+  # 역참조
+  genre = Genre.objects.get(id = 1)
+  genre.album_set.all()
+  # <QuerySet [<Album: Album object (1)>, <Album: Album object (2)>]
+  ```
+
+  - 첫 번째 글자는 소문자로 쓰고 언더바 셋을 하면 일반적으로 역참조를 하겠다는 약속이다.
+  - Album 테이블에 genre 객체가 있고 genre 는 테이블 즉,
+  - genre 테이블이 Album 테이블에 속해있는 상태에서,
+  - genre 테이블에서 Album 테이블로 역참조를 하려고 할 때,
+    - Album_set >>> X
+    - album_set >>> O
+  - 이와 같이 하위 테이블에서 상위 테이블로 역참조를 할 수 있다.
