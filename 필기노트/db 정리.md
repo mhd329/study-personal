@@ -30,7 +30,7 @@
 
 > > [5-2-5. ORDER BY](#5-2-5-ORDER BY)
 
-> >[5-2-6. 기본 함수와 연산](#5-2-6-기본 함수와 연산)
+> > [5-2-6. 기본 함수와 연산](#5-2-6-기본 함수와 연산)
 
 > [5-2-7. GROUP BY](#5-2-7-GROUP BY)
 
@@ -774,7 +774,7 @@
     ```python
     Entry.objects.filter(id__gt = 4)
     # SELECT ... WHERE id > 4;
-  
+    
     Entry.objects.filter(id__gte = 4)
     # SELECT ... WHERE id >= 4;
     ```
