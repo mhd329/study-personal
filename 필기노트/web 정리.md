@@ -14,33 +14,33 @@
 
 [4. HTML 기초](4-HTML-기초)
 
-ㄴ[5. HTML 기본 구조](5-HTML-기본-구조)
+> [5. HTML 기본 구조](5-HTML-기본-구조)
 
-​	ㄴ[5-1. html](#5-1-html)
+> > [5-1. html](#5-1-html)
 
-​	ㄴ[5-2. head](#5-2-head)
+> > [5-2. head](#5-2-head)
 
-​	ㄴ[5-3. body](#5-3-body)
+> > [5-3. body](#5-3-body)
 
 [6. CSS 기초](#6-CSS-기초)
 
-ㄴ[7. CSS 기본 스타일](#7-CSS-기본-스타일)
+> [7. CSS 기본 스타일](#7-CSS-기본-스타일)
 
-ㄴ[8. CSS 선택자](#8-CSS-선택자)
+> > [8. CSS 선택자](#8-CSS-선택자)
 
-ㄴ[9. CSS BOX model](#9-CSS-BOX-model)
+> > [9. CSS BOX model](#9-CSS-BOX-model)
 
-ㄴ[10. CSS Display](#10-CSS-Display)
+> > [10. CSS Display](#10-CSS-Display)
 
-ㄴ[11. CSS Position](#11-CSS-Position)
+> > [11. CSS Position](#11-CSS-Position)
 
-ㄴ[12. CSS Layout](#12-CSS-Layout)
+> [12. CSS Layout](#12-CSS-Layout)
 
-ㄴ[13. Float](#13-Float)
+> [13. Float](#13-Float)
 
-ㄴ[14. Flexbox](#14-Flexbox)
+> [14. Flexbox](#14-Flexbox)
 
-ㄴ[Tip. CSS 파일 최초 생성시 초기화](#CSS-파일을-만들-때-최상단에)
+[Tip. CSS 파일 최초 생성시 초기화](#CSS-파일을-만들-때-최상단에)
 
 <br>
 
