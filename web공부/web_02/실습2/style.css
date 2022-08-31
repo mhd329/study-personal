@@ -1,1 +1,36 @@
 /* 아래에 CSS를 작성해주세요. */
+.image-section {
+    margin: auto;
+    box-sizing: border-box;
+    width: 300px;
+}
+.product-image {
+    width: 100%;
+    border-radius: 2rem;
+}
+.contents {
+    padding-left: 1rem;
+}
+.company {
+    margin-bottom: 1px;
+    color: gray;
+}
+.product-name {
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+.highlight {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    font-size: 20px;
+}
+.sale {
+    color: rgb(60, 198, 253);
+}
+.prise {
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+.review {
+    color: gray;
+}

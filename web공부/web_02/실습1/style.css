@@ -1,4 +1,12 @@
 /* 아래에 CSS를 작성해주세요. */
+h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
 .sub {
     display: block;
     font-size: 12px;
@@ -17,10 +25,4 @@
 .card-image {
     width: 100%;
     border-radius: 2rem;
-}
-.contents-title {
-    font-size: 10px;
-}
-.contents {
-    font-size: 10px;
 }
