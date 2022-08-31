@@ -488,3 +488,200 @@
   - none
     - 해당 요소를 표시하지않고 공간도 주지 않는다.
     - 비슷한 것들 중 hidden 은 공간은 주지만 보여주지는 않는다.
+
+<br>
+
+## 11. CSS Position
+
+<br>
+
+- 문서상에서 요소의 위치 지정
+- static
+  - 모든 태그의 기본 위치
+  - 일반적인 요소의 배치순서임
+  - 부모 요소 내에서 배치될 때는 부모 위치를 기준으로.
+- 좌표 프로퍼티를 사용하여 이동 가능한 것들
+  - relative
+    - 상대 위치
+    - 자기 자신의 static 위치를 기준으로 자신의 모양만 이동
+    - 자신이 실제 차지하고 있는 공간은 static 때와 변하지 않았다.
+    - 사람 눈에만 변해 보이는 것
+  - absolute
+    - 절대 위치
+    - 일반적인 문서 흐름에서 빼버림
+    - 레이아웃에서 가지고 있는 공간이 없다.
+    - static 이 아닌 가장 가까이 있는 부모 / 조상 요소를 기준으로 이동
+    - 없는 경우 브라우저 화면 기준으로 이동
+  - fixed
+    - 고정 위치
+    - 일반적인 문서 흐름에서 빼버림
+    - 레이아웃에서 가지고 있는 공간이 없다.
+    - 부모와 상관없이 viewport 를 기준으로 이동
+      - 즉, 스크롤 할 때도 항상 같은 곳에 고정되어있음.
+  - sticky
+    - 스티커
+    - 스크롤에 따라 static 이었다가 fixed 로 바뀜
+    - 평소에는 문서에서 static 과 같이 일반적인 문서 흐름에 따른다.
+    - 스크롤 위치가 점차 바뀌면서 어느 순간부터는 fixed 처럼 화면에 고정이 되어버림.
+- 실제 사용 예시
+  - absolute
+    - CSS 기본 원칙을 무시하고 특정 영역 위에 요소를 배치하고 싶을 때
+    - 부모를 기준으로 어딘가에 배치시킴
+  - fixed
+    - CSS 기본 원칙을 무시하고 특정에 요소를 배치하고 싶을 때
+    - 브라우저를 기준으로 위치시킴
+  - sticky
+    - 스크롤에 따라 fixed / static
+    - 보통 navi 같은곳에 쓰임
+- 정리
+  - 일반적인 흐름
+    1. 모든 요소는 네모
+    2. 좌상단부터 배치
+    3. display 에 따라 크기 / 배치가 달라짐
+  - 위치
+    - position 으로 위치되는 기준을 변경
+      - relative
+        - 자기 원래자리
+      - absolute
+        - 어떤 부모의 위치
+      - fixed
+        - 화면의 위치
+      - sticky
+        - static ~ fixed 가변
+
+<br>
+
+## 12. CSS Layout
+
+<br>
+
+- 여러 레이아웃 관련 기술들
+  - Display
+  - Position
+  - Float
+  - Flexbox
+  - Grid
+  - 기타 등등
+
+<br>
+
+## 13. Float
+
+<br>
+
+- CSS 배치의 기본 원칙에 관해,
+  - 박스를 왼쪽이나 오른쪽으로 이동시킨 다음 텍스트를 포함한 인라인 요소들이 그 주변을 감싸도록 함
+  - 일반적인 흐름에서 벗어난다.
+  - 신문기사 본문과 사진의 구성처럼 됨
+
+<br>
+
+## 14. Flexbox
+
+<br>
+
+- 행과 열 형태로 배치시킨다.
+
+- 일반적으로,
+
+  - 가로 main axis
+  - 세로 cross axis
+
+- 그 축으로 둘러싸인 박스에 대해,
+
+  - 부모 요소 flex container
+    - 레이아웃을 형성하는 기본모델
+    - 아이템들이 들어있는 곳
+    - 부모 요소로 쓸 것의 display 속성을 flex 혹은 inline-flex 로 지정
+      - 그 안의 자식 요소 flex item
+      - 컨테이너 안에 있는 컨텐츠
+
+- Flexbox 의 장점
+
+  - 수동적인 값의 부여 없이
+    1. 수직 정렬이 가능하다.
+    2. 아이템의 너비와 높이 혹은 간격을 동일하게 배치할 수 있다.
+
+- Flex 속성들
+
+  - 배치에 관해,
+
+    1. flex-direction
+
+       - Main 축의 방향을 설정
+
+       - 즉, 요소가 나열되는 방향을 정해준다.
+
+         - row
+
+         - row-reverse
+
+         - column
+
+         - column-reverse
+
+    2. flex-wrap
+
+       - 아이템이 컨테이너 안에 있도록 설정해줌
+       - 요소들을 강제로 한 줄에 배치 할 것인지 여부 설정
+         - nowrap
+           - 기본값
+           - 한 줄에 배치
+         - wrap
+           - 넘치면 그 다음줄로 배치
+
+    - flex-flow
+      - direction 과 wrap 의 shorthand
+      - `flex-flow: row nowrap;` 처럼 direction 과 wrap 에 대한 설정값을 차례대로 작성
+
+  - 공간 나누기
+
+    1. justify-content
+       - main 기준
+         - flex-
+           - start
+           - end
+         - center
+         - space-
+           - between
+           - around
+           - evenly
+    2. align-content
+       - cross 기준
+         - flex-
+           - start
+           - end
+         - center
+         - space-
+           - between
+           - around
+           - evenly
+
+  - 정렬
+
+    - align-items
+      - 모든아이템을 cross 기준
+        - stretch
+        - flex-
+          - start
+          - end
+        - center
+        - baseline
+          - 써 있는 글자들을 기준으로 기준선을 잡는다.
+          - a, b, c, d 글자의 높낮이가 다 다름.
+    - align-self
+      - 개별 아이템
+      - 이 속성은 컨테이너에 적용되는 것이 아니다.
+        - stretch
+        - flex-
+          - start
+          - end
+        - center
+
+  - 기타 속성
+
+    - flex-grow
+      - 남은 공간을 각 요소에 나눠준다.
+      - order
+        - 배치 순서
+      - 예시 `<div class="flex-item grow-1 order-3">`
