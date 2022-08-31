@@ -1,0 +1,26 @@
+/* 아래에 CSS를 작성해주세요. */
+.sub {
+    display: block;
+    font-size: 12px;
+}
+.title {
+    text-align: center;
+}
+.card-section {
+    width: 900px;
+}
+.card {
+    display: inline-block;
+    margin: 20px;
+    width: 300px;
+}
+.card-image {
+    width: 100%;
+    border-radius: 2rem;
+}
+.contents-title {
+    font-size: 10px;
+}
+.contents {
+    font-size: 10px;
+}
