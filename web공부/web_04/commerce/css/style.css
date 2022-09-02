@@ -47,7 +47,6 @@ body {
 
 .navigation-items {
   display: flex;
-  flex-direction: row;
 }
 
 .item {
