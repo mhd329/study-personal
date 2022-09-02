@@ -9,6 +9,10 @@ a {
   text-decoration: none;
 }
 
+a:link {
+  color: rgb(0, 0, 0);
+}
+
 a:visited {
   color: rgb(0, 0, 0);
 }
@@ -63,15 +67,25 @@ body {
 /* index.banner */
 
 .banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-image: url("../assets/apparel.jpeg");
   background-position: top center;
   background-repeat: no-repeat;
-  text-align: center;
+  background-size: cover;
   height: 700px;
 }
 
 .banner-image {
   width: 100%;
+}
+
+.banner-title {
+  color: black;
+  font-size: xx-large;
+  font-weight: bolder;
 }
 
 /* index.article */

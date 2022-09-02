@@ -22,17 +22,17 @@
 
 > > [5-2-1. SELECT](#5-2-1-SELECT)
 
-> >[5-2-2. WHERE](#5-2-2-WHERE)
+> > [5-2-2. WHERE](#5-2-2-WHERE)
 
-> > [5-2-3. SQLite 집계 함수](#5-2-3-SQLite 집계 함수)
+> > [5-2-3. SQLite 집계 함수](#5-2-3-SQLite-집계-함수)
 
-> >[5-2-4. LIKE](#5-2-4-LIKE)
+> > [5-2-4. LIKE](#5-2-4-LIKE)
 
-> > [5-2-5. ORDER BY](#5-2-5-ORDER BY)
+> > [5-2-5. ORDER BY](#5-2-5-ORDER-BY)
 
-> > [5-2-6. 기본 함수와 연산](#5-2-6-기본 함수와 연산)
+> > [5-2-6. 기본 함수와 연산](#5-2-6-기본-함수와-연산)
 
-> [5-2-7. GROUP BY](#5-2-7-GROUP BY)
+> [5-2-7. GROUP BY](#5-2-7-GROUP-BY)
 
 > [5-3. Update](#5-3-Update)
 
@@ -48,7 +48,7 @@
 
 [파이썬-DB 2. QuerySet API](#파이썬-DB-2-QuerySet-API)
 
-[파이썬-DB 3. ORM 확장](#파이썬-DB-3-ORM 확장)
+[파이썬-DB 3. ORM 확장](#파이썬-DB-3-ORM-확장)
 
 <br>
 
