@@ -1,13 +1,13 @@
 <br>
 
-![](README.assets/화면 캡처 2022-09-01 215743.png)
+![1](./README.assets/1.png)
 
 <br>
 
-![](README.assets/화면 캡처 2022-09-01 215754.png)
+![2](./README.assets/2.png)
 
 <br>
 
-![](README.assets/화면 캡처 2022-09-01 215935.png)
+![3](./README.assets/3.png)
 
 <br>
