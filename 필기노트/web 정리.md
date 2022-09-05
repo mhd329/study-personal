@@ -14,35 +14,45 @@
 
 [4. HTML 기초](#4-HTML-기초)
 
-> [5. HTML 기본 구조](#5-HTML-기본-구조)
+> [4-1. HTML 기본 구조](#4-1-HTML-기본-구조)
+>
+> >[4-1-1. html](#4-1-1-html)
+> >
+> >[4-1-2. head](#4-1-2-head)
+> >
+> >[4-1-3. body](#4-1-3-body)
+>
+> [4-2. HTML 태그](#4-2-HTML-태그)
+>
+> >[4-2-1. 시맨틱 태그](#4-2-1-시맨틱-태그)
+> >
+> >[4-2-2. Table](#4-2-2-Table)
+> >
+> >[4-2-3. form](#4-2-3-form)
+> >
+> >[4-2-4. input](#4-2-4-input)
 
-> > [5-1. html](#5-1-html)
+[5. CSS](#5-CSS)
 
-> > [5-2. head](#5-2-head)
-
-> > [5-3. body](#5-3-body)
-
-[6. CSS 기초](#6-CSS-기초)
-
-> [7. CSS 기본 스타일](#7-CSS-기본-스타일)
-
-> > [8. CSS 선택자](#8-CSS-선택자)
-
-> > [9. CSS BOX model](#9-CSS-BOX-model)
-
-> > [10. CSS Display](#10-CSS-Display)
-
-> > [11. CSS Position](#11-CSS-Position)
-
-> [12. CSS Layout](#12-CSS-Layout)
-
-> [13. Float](#13-Float)
-
-> [14. Flexbox](#14-Flexbox)
-
-[Tip. CSS 파일 최초 생성시 초기화](#CSS-파일을-만들-때-최상단에)
-
-> [15. 시맨틱 태그](#15-시맨틱-태그)
+> [5-1. CSS 기본 스타일](#5-1-CSS-기본-스타일)
+>
+> > [5-1-1. CSS 선택자](#5-1-1-CSS-선택자)
+> >
+> > [5-1-2. CSS BOX model](#5-1-2-CSS-BOX-model)
+> >
+> > [5-1-3. CSS Display](#5-1-3-CSS-Display)
+> >
+> > [5-1-4. CSS Position](#5-1-4-CSS-Position)
+>
+> [5-2. CSS Layout](#5-2-CSS-Layout)
+>
+> [5-3. Float](#5-3-Float)
+>
+> [5-4. Flexbox](#5-4-Flexbox)
+>
+> [Tip. CSS 파일 최초 생성시 초기화](#CSS-파일을-만들-때-최상단에)
+>
+> [5-5. Bootstrap](#5-5-Bootstrap)
 
 <br>
 
@@ -134,7 +144,7 @@
 
 <br>
 
-## 5. HTML 기본 구조
+### 4-1. HTML 기본 구조
 
 <br>
 
@@ -174,7 +184,7 @@
 
 <br>
 
-### 5-1. html
+#### 4-1-1. html
 
 <br>
 
@@ -182,7 +192,7 @@
 
 <br>
 
-### 5-2. head
+#### 4-1-2. head
 
 <br>
 
@@ -235,7 +245,7 @@
 
 <br>
 
-### 5-3. body
+#### 4-1-3. body
 
 <br>
 
@@ -322,7 +332,170 @@
 
 <br>
 
-## 6. CSS 기초
+### 4-2. HTML 태그
+
+<br>
+
+#### 4-2-1. 시맨틱 태그
+
+<br>
+
+- 의미부여 요소
+  - Non semantic
+    - `div`
+    - `span`
+  - semantic
+    - `header`
+    - `nav`
+    - `aside`
+      - 문서 사이드 공간
+      - 메인과 관련이 적은 것들
+    - `section`
+      - 문서의 구분단위
+    - `article`
+      - 문서 안에서의 구분단위
+    - `footer`
+- 시맨틱 태그를 사용해야 하는 이유
+  - 각 정보들을 알맞은 의미단위로 구분할 수 있음
+  - 따라서 코드의 가독성이 좋아지고 유지보수가 쉬워짐
+  - 검색 엔진 최적화 (SEO) 를 위해서 메타태그, 시맨틱 태그 등을 통한 마크업을 효과적으로 활용해야 한다.
+
+<br>
+
+[목차로 가기](#목차)
+
+<br>
+
+#### 4-2-2. Table
+
+<br>
+
+- 테이블의 각 부분
+  - `<thead>`
+  - `<tbody>`
+  - `<tfoot>`
+  - 그리고 테이블에  대해 `<caption>` 로 설명
+- `<tr>` 로 가로 줄을 구성하고 내부에는 `<th>` 혹은 `<td>` 로 셀을 구성
+  - `<tr>` 테이블 행
+  - `<th>` 테이블 헤드
+    - `<thead>` 에 들어가는 데이터는 `<th>` 로 씀
+    - `<tbody>` 혹은 `<tfoot>`에 들어가는 경우 그냥 `<td>` 이다.
+  - `<td>` 테이블 데이터
+- `<colspan>`, `<rowspan>` 속성을 활용하여 칸의 모양을 조작할 수 있다.
+
+<br>
+
+#### 4-2-3. form
+
+<br>
+
+- 데이터를 서버에 주기 위해 사용하는 태그
+- 기본 속성
+  - action
+    - 폼을 처리할 서버의 주소
+    - `/search` 같이 써줌
+  - method
+    - 폼을 제출할 때 사용할 HTTP 메서드
+    - `GET` 이나 `POST`
+  - enctype
+    - 메소드가 post 인 경우 데이터의 유형
+    - application/x-www-form-utlencoded
+      - 기본값
+    - multipart/form-data
+      - 어떤 파일을 전송할 때
+      - 즉 input type 이 파일인 경우
+  - `<form action="/search" method="GET">``</form>`
+    - 위와 같이 쓴다.
+
+<br>
+
+#### 4-2-4. input
+
+<br>
+
+- 어떤 데이터가 입력될 때 그 데이터의 종류별로 다양한 input 유형이 제공된다.
+
+  - email, password, text 등
+
+- 대표적인 속성
+
+  - name / value
+
+    - 폼 조작시 쓰이는 이름과 값
+    - 이름 / 값 쌍으로 전송
+
+  - 그 외 required, readonly, autofocus, autocomplete, disabled 등
+
+  - ```html
+    <form action="/search" method="GET">
+        <input type="text" name="q">
+    </form>
+    ```
+
+  - 위와 같이 쓴다.
+
+<br>
+
+1. input label
+
+   - 라벨을 클릭하여 인풋을 클릭한 것과 같은 효과를 낼 수 있음
+
+   - 특히 모바일같이 터치가 부정확 할 수 밖에 없는 환경에서 편하다.
+
+   - `<input>` 에 `id` 를 주고 `<label>` 에는 `for` 속성을 줘서 서로 연관시킨다.
+
+     - ```html
+       <label for="인풋 태그의 아이디">입력과 관련된 문구</label>
+       <input type="checkbox 혹은 radio" name="입력을 받고 싶은 것의 이름" id="인풋 태그의 아이디"
+       ```
+
+2. input 의 다양한 유형들
+
+   1. 일반적인 입력
+
+      - 단순한 입력을 받기 위해 제공된다.
+      - text : 단순 글자
+      - password : 뭔가를 써도 글자가 보이지 않고 * 같이 기호로 표현
+      - email : 이메일 형식만 받음
+      - number : min, max, step 을 써서 숫자 범위 설정가능
+      - file : accept 속성을 써서 파일 타입 지정 가능
+
+   2. 항목 중 선택
+
+      - 일반적으로 라벨과 같이 쓴다.
+
+      - 동일한 것에 관해 쓸 때는 같은 name 을 쓰고 다른 value 로 구분
+
+        - ```html
+          <div>
+          <p>checkbox</p>
+          <input id="html" type="checkbox" name="language" value="html">
+          <label for="html">HTML</label>
+          <input id="python" type="checkbox" name="language" value="python">
+          <label for="python">파이썬</label>
+          <input id="python" type="checkbox" name="language" value="java">
+          <label for="java">자바</label>
+          <hr>
+          </div
+          ```
+
+        - checkbox 는 여러 개 선택
+
+        - radio 는 하나만 가능
+
+   3. 기타
+
+      - 다양한 종류의 input 을 위한 picker 를 제공
+      - color, date
+      - hidden 은 사용자에게 보이지 않는 인풋
+
+<br>
+
+[목차로 가기](#목차)
+
+<br>
+
+## 5. CSS
 
 <br>
 
@@ -378,7 +551,7 @@
 
 <br>
 
-## 7. CSS 기본 스타일
+### 5-1. CSS 기본 스타일
 
 <br>
 
@@ -431,7 +604,7 @@
 
 <br>
 
-## 8. CSS 선택자
+#### 5-1-1. CSS 선택자
 
 <br>
 
@@ -499,7 +672,7 @@
 
 <br>
 
-## 9. CSS BOX model
+#### 5-1-2. CSS BOX model
 
 <br>
 
@@ -530,7 +703,7 @@
 
 <br>
 
-## 10. CSS Display
+#### 5-1-3. CSS Display
 
 <br>
 
@@ -579,7 +752,7 @@
 
 <br>
 
-## 11. CSS Position
+#### 5-1-4. CSS Position
 
 <br>
 
@@ -643,7 +816,7 @@
 
 <br>
 
-## 12. CSS Layout
+### 5-2. CSS Layout
 
 <br>
 
@@ -661,7 +834,7 @@
 
 <br>
 
-## 13. Float
+### 5-3. Float
 
 <br>
 
@@ -676,7 +849,7 @@
 
 <br>
 
-## 14. Flexbox
+### 5-4. Flexbox
 
 <br>
 
@@ -811,32 +984,48 @@ body {
 
 <br>
 
-## 15. 시맨틱 태그
+### 5-5. Bootstrap
 
 <br>
 
-- 의미부여 요소
-  - Non semantic
-    - `div`
-    - `span`
-  - semantic
-    - `header`
-    - `nav`
-    - `aside`
-      - 문서 사이드 공간
-      - 메인과 관련이 적은 것들
-    - `section`
-      - 문서의 구분단위
-    - `article`
-      - 문서 안에서의 구분단위
-    - `footer`
-- 시맨틱 태그를 사용해야 하는 이유
-  - 각 정보들을 알맞은 의미단위로 구분할 수 있음
-  - 따라서 코드의 가독성이 좋아지고 유지보수가 쉬워짐
-  - 검색 엔진 최적화 (SEO) 를 위해서 메타태그, 시맨틱 태그 등을 통한 마크업을 효과적으로 활용해야 한다.
+- 미리 만들어져 있는 CSS 파일
+- 다운로드 방식과 CDS 방식이 있음
 
 <br>
 
-[목차로 가기](#목차)
+#### 5-5-1. spacing
 
 <br>
+
+- `mt-3` 과 같이 씀
+- m 은 margin
+- t 는 top
+- 3 은 사이즈
+  - 3 이 1rem 으로 기준 크기이다.
+  - 0 부터 5 까지와 auto 가 있음
+  - bootstrap 으로 마진을 주는 과정에서 important 가 쓰인다.
+- 마진, 패딩 그리고 가로세로 방향, 사이즈 등을 정할 수 있다.
+
+<br>
+
+#### 5-5-2. Color, Text
+
+<br>
+
+- Color
+  - 기존에 쓰이던 색을 좀 더 시각적으로 부드럽게 다듬어준다.
+  - 각 상황별로 쓰이는 색을 미리 설정해두었음
+- Text
+  - 정렬 관련하여 설정 가능
+  - 링크 걸기
+  - font-weight, italic 등
+
+<br>
+
+#### 5-5-3. Display, Position
+
+<br>
+
+- 사람들이 많이 쓰는 디자인 패턴을 하나의 모듈화 시켜서 준비해놓음
+- 네비게이션 바 같은 경우 기본적으로 준비되어 있는 코드가 있다.
+- 그 외 Display, Position 자주 쓰이는 코드들이 재가공되어 준비돼있음.
