@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .modal-overlay-style {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      width: 100%;
+      height: 100vh;
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-innerbox {
+      background-color: #ffffff;
+      width: 20rem;
+      height: 20rem;
+      border-radius: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-innerbox-body {
+      height: 70%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .show {
+      display: flex;
+      flex-direction: column;
+    }
+
+  </style>
+</head>
+<body>
+  <div>
+    <button id="modal-btn">모달 버튼</button>
+  </div>
+  <div id="modal-content" class="modal-overlay-style">
+    <div class="modal-innerbox">
+      <div class="modal-innerbox-body">
+        <h3 style="margin-bottom: 0rem;">동의를 구하는 사항</h3>
+        <p>동의를 구하는 내용</p>
+      </div>
+      <div class="modal-innerbox-footer">
+        <button id="modal-cancel">확인했습니다.</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const modal_toggle_btn = function () {
+      document.querySelector("#modal-content").classList.toggle("show")
+    }
+
+    const modal_toggle_cancel = function () {
+      
+    }
+
+    const modal_btn = document.querySelector("#modal-btn")
+    modal_btn.addEventListener("click", modal_toggle_btn)
+    
+    const modal_cancel_btn = document.querySelector("#modal-cancel")
+    modal_cancel_btn.addEventListener("click", modal_toggle_cancel)
+
+    const modal_content = document.querySelector("#modal-content")
+    modal_content.addEventListener("click", modal_toggle_btn)
+
+  </script>
+</body>
+</html>

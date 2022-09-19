@@ -1,0 +1,23 @@
+<form action="">
+  <input type="password" name="password" id="password">
+  <input type="password" name="password_confirmation" id="password_confirmation">
+  <input id="ans" type="submit" value="제출">
+</form>
+<script>
+  const comparison = function() {
+    const pass_input = document.querySelector('#password').value
+    const confirmation = document.querySelector('#password_confirmation').value
+    if (pass_input.length < 8) {
+      alert("비밀번호가 너무 짧습니다.")
+    } else {
+        if (pass_input !== confirmation) {
+          alert("비밀번호가 다릅니다.")
+        }
+        else {
+          alert("확인")
+        }
+      }
+    }
+  const ans = document.querySelector("#ans")
+  ans.addEventListener("click", comparison)
+</script>
