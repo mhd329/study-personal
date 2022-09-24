@@ -73,10 +73,6 @@ function updateName() {
 
 <br>
 
-[위로 가기](#목차)
-
-<br>
-
 ### 2. JavaScript 로 할 수 있는 일들
 
 <br>
@@ -98,10 +94,6 @@ function updateName() {
 - 클라이언트 사이드, 서버 사이드 둘 다 사용 가능
 - HTML 파일 내부에서 `<script>` 요소 안에 JavaScript 를 넣거나,
 - script.js 와 같이 .js 파일로 사용할 수 있다.
-
-<br>
-
-[위로 가기](#목차)
 
 <br>
 
@@ -127,10 +119,6 @@ var Früh = "foobar";
 
 /* 그러나 */ 주석을 중첩해서 사용할 수 없다. */ SyntaxError */
 ```
-
-<br>
-
-[위로 가기](#목차)
 
 <br>
 

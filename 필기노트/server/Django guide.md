@@ -109,6 +109,7 @@
    - manage.py 파일과 프로젝트의 이름으로 된 디렉토리가 있어야 한다.
    - 시작할 경로가 정해지지 않은 경우 자동으로 루트 경로 하위에 프로젝트 이름으로 새로운 경로가 추가된다.
      - manage.py 파일은 그 경로 하위에 생성되기 때문에 Django 를 실행하려는 경우 그 경로까지 이동해아 한다.
+3. `django-admin startapp [앱 이름]` 혹은 `python manage.py startapp [앱 이름]`
 
 <br>
 
