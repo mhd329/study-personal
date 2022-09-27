@@ -1,6 +1,12 @@
 <br>
 
-<center>vscode 켜놓고 따라해보세요 !! </center> 
+<div align="center">
+<p>
+<b>VScode에서 직접 써보세요 !!</b>
+<br>
+<b>아주 편하답니다.</b>
+</p>
+</div>
 
 <br>
 

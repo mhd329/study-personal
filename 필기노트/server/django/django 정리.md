@@ -31,6 +31,25 @@
 >> [3-1-3. Tags](#3-1-3-Tags)
 >>
 >> [3-1-4. Comments](#3-1-4-Comments)
+>>
+>> [3-1-5. 템플릿 상속](#3-1-5-템플릿-상속)
+>>
+>> [3-1-6. 템플릿 namespace](#3-1-6-템플릿-namespace)
+>
+
+[4. Variable routing](#4-Variable-routing)
+
+[5. form](#5-form)
+
+> [5-1. Client](#5-1-Client)
+>
+> [5-2. Server](#5-2-Server)
+
+[6. URL](#6-URL)
+
+> [6-1. App URL mapping](#6-1-App-URL-mapping)
+>
+> [6-2. 포함 기능](#6-2-포함-기능)
 
 <br>
 
@@ -323,7 +342,230 @@ INSTALLED_APPS = [
 
 <br>
 
+#### 3-1-5. 템플릿 상속
+
+<br>
+
+- 웹 페이지를 만들 때 반복 사용되는 코드들을 재사용하기 위해 사용
+- 코딩 효율을 높여준다.
+
+```html
+{% extends "[뼈대 페이지.html]" %}
+
+{% block [공간 이름] %}
+자식 템플릿에서 재정의 가능한 공간
+{% endblock [공간 이름](생략 가능) %}
+```
+
+- extends 는 반드시 템플릿 최상단에 쓰여져야 한다.
+- 부모 페이지를 모든 페이지에 상속 할 수 있게 경로를 설정해주어야 한다.
+  - 프로젝트 최상단에 templates 디렉토리를 만든다.
+  - `뼈대 페이지.html` 를 templates 에 넣는다.
+  - `setting.py` 의 `TEMPLATES`  `'DIRS' : []` 에 다음과 같이 쓴다.
+    - `[BASE_DIR / "templates"]`
+- [pathlib — 객체 지향 파일 시스템 경로 — Python 3.9.14 문서](https://docs.python.org/ko/3.9/library/pathlib.html#module-pathlib)
+
+<br>
+
+#### 3-1-6. 템플릿 namespace
+
+<br>
+
+- 장고는 기본적으로 `[앱 이름]/templates/` 경로에 있는 html 파일만 찾을 수 있다.
+- 그것은 settings.py 의 INSTALLED_APPS 에 **[앱] 이 작성된 순서대로** html 을 검색 후 렌더링한다.
+- 디렉토리를 따로 생성해 물리적으로 namespace 에 구분을 줄 수 있다.
+  - 장고 템플릿의 기본 경로를 바꿀 수는 없다.
+  - 대신 `[앱 이름]/templates/[앱 이름]/` 형태로 만들 수 있다.
+- 이름공간의 구조가 바뀌었으면 urls.py 등 해당하는 모든 경로도 전부 수정해주어야 한다.
+
+<br>
+
 [위로가기](#목차)
 
 <br>
 
+## 4. Variable routing
+
+<br>
+
+- url 의 일부분을 변수로 지정하여 view 함수의 인자로 넘길 수 있음
+- 변수값에 따라 주소가 바뀌고 그에 해당하는 페이지를 일일이 만들지 않아도 된다.
+- `path()` 에서 여러 페이지를 연결 시킬 수 있음
+
+```python
+urlpatterns = [
+	path('hello/<str:name>/', views.hello), # 1
+	path('hello/<name>/', views.hello), # 2
+]
+```
+
+- 기본 타입이 str 이기 때문에 `# 2` 와 같이 작성해도 된다.
+  - str
+    - `/` 를 제외하고 비어있지 않은 모든 문자열
+  - int
+    - 0 또는 양의 정수
+  - slug
+  - uuid
+  - path
+
+```python
+def index(request, [매개변수]):
+    context = {
+        "매개변수" : [매개변수]
+    }
+    return render(request, "index.html", context)
+```
+
+```html
+<!-- index.html -->
+<h1>
+    {{ [매개변수] }}
+</h1>
+```
+
+<br>
+
+[위로가기](#목차)
+
+<br>
+
+## 5. form
+
+<br>
+
+- html \<form> 태그
+  - 데이터를 전송하기 위해 사용되는 태그
+    - `action`
+      - 데이트를 보낼 url 지정
+      - 지정하지 않으면 현재 페이지로 되돌림
+    - `method`
+      - 전송 방법을 정의
+      - 웹의 다양한 자원들을 가져올 수 있도록 해주는 규칙
+      - 웹상 데이터 교환의 기초
+        - `GET`
+          - `method` 를 작성하지 않을 시 기본값
+          - 서버로부터 정보를 조회하는데 사용
+          - 가져오기 전용
+          - `GET` 방식에서는 url 형식으로 데이터를 전달
+          - `name` 은 `key` , `value` 는 `value` 로 매핑되어 전달됨
+        - `POST`
+        - `PUT`
+        - `DELETE`
+
+<br>
+
+### 5-1. Client
+
+<br>
+
+- \<form> 태그 등으로 서버에 요청을 보내는 주체
+
+- 브라우저는 url 을 통해 요청을 담아 전송한다.
+
+  - \<form> 태그의 `action` 속성에 url 을 기입한다.
+
+- html \<input> 태그
+
+  - 클라이언트는 \<input> 태그에 양식에 맞는 요청을 추가한 뒤,  \<form> 의 `action` 에서 url 과 결합하여 데이터를 보낸다.
+  - `type` 에 따라 동작이 달라진다.
+    - 기본값은 `text`
+  - `value` 를 작성하면 기본 입력값이 설정된다.
+  - `name`
+
+  ```html
+  <form action="name 으로 설정된 어떤 이름에 담긴 데이터를 받을 url" method="쓰지 않을 시 기본값 GET">
+      <input type="text" name="input 에 어떤 값을 적었을 때 그 값이 담겨진 이름">
+  </form>
+  ```
+
+  - `GET` 방식으로 전송 시 url 의 변화
+    - `~~~/[action 에서 정한 주소]/?[name 에서 정한 이름]=[input 에 적은 값]`
+      - 정해진 주소 뒤에 물음표를 쓰는 것으로 시작을 알림
+    - `key=value` 쌍이 많은 경우 `&` 로 구분됨
+      - 쿼리스트링 이라고도 함
+
+<br>
+
+### 5-2. Server
+
+<br>
+
+- 요청에 맞는 데이터를 가져옴
+  - 모든 요청 데이터는 `request` 라는 매개 변수에 들어있다.
+
+<br>
+
+1. 브라우저에 의해 페이지가 요청된다.
+2. django 는 요청에 맞게 데이터를 넣어서 HTTP request object 를 생성
+3. 요청에 해당하는 view 함수를 로드
+4. HTTP request 를 첫 번째 인자로 전달
+5. view 함수는 HTTP response object 를 반환
+
+<br>
+
+[위로가기](#목차)
+
+<br>
+
+## 6. URL
+
+<br>
+
+- 클라이언트는 요청사항을 url 을 통해 전달함
+- django 는 url 끝에 슬래쉬가 없다면 자동으로 붙여준다.
+  - 기술적인 측면에서 `foo.com/bar` , `foo.com/bar/` 는 다르다.
+  - url 형태를 통일시켜서 정규화를 해야한다.
+
+<br>
+
+### 6-1. App URL mapping
+
+<br>
+
+- 덩치가 커져갈수록 하나의 urls.py 에 모든 주소를 관리하는 것은 유지보수에 좋지 않다.
+
+- 해결법
+
+  1. 각각의 앱 안에 urls.py 를 만든다.
+  2. 경로를 잡아주고 아래와 같이 urls.py 의 형식에 맞게 import 를 해준다.
+
+  ```python
+  from . import views # 경로 설정
+  from django.urls import path
+  
+  urlpatterns = [
+      
+  ]
+  ```
+
+<br>
+
+### 6-2. 포함 기능
+
+<br>
+
+- urlpatterns 에는 다른 url 모듈도 들어갈 수 있다.
+
+```python
+# 프로젝트 루트 디렉토리의 urls.py
+
+urlpatterns = [
+path('admin/', admin.site.urls),
+path('articles/', include('articles.urls')),
+path('pages/', include('pages.urls')),
+]
+```
+
+- `include()`
+  - 다른 URLconf 들을 참조할 수 있도록 돕는 함수
+- `articles/` 와 관련된 주소는 articles 경로 하위의 urls.py 에게 전달된다.
+  - URL의 일치하는 부분만 잘라내고 그 후속 부분은 전달받은 다른 urls.py 파일이 조작하게 된다.
+- 포함 되는 앱 하위로 urls.py 를 따로 만들었고 루트 디렉토리의 urls.py 에서 include 로 조작하려면,
+- 그 앱의 urls.py 에 urlpatterns 가 작성되어있어야 한다.
+  - 빈 리스트라도 작성되어 있어야 정상 동작한다.
+
+<br>
+
+[위로가기](#목차)
+
+<br>
