@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+
+<div>
+  <h1>
+    메모장
+  </h1>
+</div>
+<article class="">
+  <ul class="p-0 m-0">
+    {% for memo in post %}
+    <li class="pb-5">
+      {% if memo.completed == False %}
+      <p class="m-0">[내용 : {{ memo.content }}]</p>
+      <p class="m-0">[완료 여부 : {{ memo.completed }}]</p>
+      <p class="m-0">[우선순위 : {{ memo.priority }}]</p>
+      <p class="m-0">[생성 날짜 : {{ memo.created_at }}]</p>
+      <p class="m-0">[마감 기한 : {{ memo.deadline }}]</p>
+      {% endif %}
+      {% if memo.completed == True %}
+      <p class="m-0"><del>[내용 : {{ memo.content }}]</del></p>
+      <p class="m-0"><del>[완료 여부 : {{ memo.completed }}]</del></p>
+      <p class="m-0"><del>[우선순위 : {{ memo.priority }}]</del></p>
+      <p class="m-0"><del>[생성 날짜 : {{ memo.created_at }}]</del></p>
+      <p class="m-0"><del>[마감 기한 : {{ memo.deadline }}]</del></p>
+      {% endif %}
+      <span>>>></span>
+      <a href="/update/{{ memo.id }}">완료</a>
+      <span> / </span>
+      <a href="/delete/{{ memo.id }}">삭제</a>
+    </li>
+    {% endfor %}
+  </ul>
+</article>
+
+<div class="flex-column">
+  <form action="{% url 'posts:create' %}" method="GET">
+    <p>할 일 : <input type="text" name="content"></p>
+    <p>우선순위 : <input type="number" name="priority"></p>
+    <p>마감 기한 : <input type="date" name="deadline"></p>
+    <button type="submit">등록</button>
+  </form>
+</div>
+
+{% endblock %}

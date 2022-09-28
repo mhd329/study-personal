@@ -50,6 +50,20 @@
 > [6-1. App URL mapping](#6-1-App-URL-mapping)
 >
 > [6-2. 포함 기능](#6-2-포함-기능)
+>
+> [6-3. URL patterns 이름 부여](#6-3-URL-patterns-이름-부여)
+
+[7. Database](#7-Database)
+
+>[7-1. Model](#7-1-Model)
+>
+>[7-2. Migrations](#7-2-Migrations)
+>
+>[7-3. 추가 필드의 정의](#7-3-추가-필드의-정의)
+>
+>[7-4. ORM](#7-4-ORM)
+>
+>[7-5. QuerySet API](#7-5-QuerySet-API)
 
 <br>
 
@@ -115,6 +129,11 @@
   - 웹 서비스 개발을 위해 만들어진 web framework
   - 웹 개발에 필요한 기능들 중 자주 쓰이는 기능들을 따로 모아 유지관리하는 작업도구이다.
   - 소프트웨어의 생산성과 품질을 높임
+- 설계 철학
+  - 표현과 로직을 분리
+  - 중복을 배제
+    - 템플릿 상속의 기초가 되는 철학이다.
+
 
 <br>
 
@@ -371,6 +390,14 @@ INSTALLED_APPS = [
 
 <br>
 
+- Namespace
+  - 개체를 구분할 수 있는 범위이다.
+  - URL namespace 를 사용하면 서로 다른 앱에서도 문제없이 동일한 URL 로 사용할 수 있다.
+    - `app_name` 변수를 만들어서 URL namespace 를 설정해야 한다. 
+      - `app_name = [해당 앱의 이름]`
+      - url 주소의 변화 `{% url 'url 이름' %}  {% url '[앱 이름]:[url 이름]' %}`
+      - `app_name` 을 지정한 후 부터는 url 태그에서 반드시 `[앱 이름]:[url 이름]` 형식으로 사용해야 한다.
+
 - 장고는 기본적으로 `[앱 이름]/templates/` 경로에 있는 html 파일만 찾을 수 있다.
 - 그것은 settings.py 의 INSTALLED_APPS 에 **[앱] 이 작성된 순서대로** html 을 검색 후 렌더링한다.
 - 디렉토리를 따로 생성해 물리적으로 namespace 에 구분을 줄 수 있다.
@@ -566,6 +593,146 @@ path('pages/', include('pages.urls')),
 
 <br>
 
+### 6-3. URL patterns 이름 부여
+
+<br>
+
+```python
+urlpatterns = [
+    path('index/', views.index, name='index'),
+    path('a/', views.a, name='a'),
+    path('b/', views.b, name='b'),
+]
+```
+
+- 어떤 페이지의 문자열 주소가 변경되는 경우 그 전까지 그 주소로 사용되고있던 모든 문자열 주소를 업데이트 해야 한다.
+- `name` 인자를 정의해서 사용 할 경우 원본 urlpatterns 를 자유롭게 변경 할 수 있다.
+- `{% url 'url 이름' %}` 형식으로 사용한다.
+
+<br>
+
 [위로가기](#목차)
 
 <br>
+
+## 7. Database
+
+<br>
+
+- 기본 구조
+  - Schema
+    - 뼈대
+    - 자료의 구조, 표현 방법, 관계 등을 정의한 것
+    - 데이터는 스키마 형식에 맞게 입력된다.
+  - Table
+    - Relation 이라고도 부른다.
+    - 필드와 레코드로 조직된 데이터 요소들의 집합
+      - 필드
+        - 속성, 컬럼
+        - 스키마에서 지정된 각각의 데이터 형식이 각 행에 맞게 지정된다.
+      - 레코드
+        - 튜플, 행
+        - 데이터가 저장되는 가로줄
+        - 하나의 행에는 열의 개수만큼 데이터가 저장된다.
+- Primary Key
+  - 기본으로 가지는 고유한 id, 중복될 수 없다.
+  - 식별자로 사용된다.
+  - DB 관리 및 다 DB간의 관계 설정 시 중요하게 쓰인다.
+- 쿼리
+  - 데이터를 조회하기 위한 명령어
+
+<br>
+
+### 7-1. Model
+
+<br>
+
+- 장고는 모델을 활용하여 데이터를 조작
+
+- 저장된 DB의 레이아웃
+
+- 각각의 모델은 일반적으로 어떤 단일 DB의 테이블 하나에 대응된다.
+
+- 모델 작성법
+
+  - 클래스를 만들고 클래스 변수에 값으로 초기화하는 형태
+
+  ```python
+  class [테이블 이름](models.Model):
+      [필드 1 이름] = models.[필드 1 의 타입]
+      [필드 2 이름] = models.[필드 2 의 타입]
+      
+  class app(models.Model):
+      title = models.CharField(max_length=[값])
+      content = models.TextField()
+  ```
+
+- 각 모델은 `django.models.Model` 클래스의 서브 클래스이다.
+- `models` 모듈을 통해 DB필드의 타입을 정의
+  - 다양한 모델 [필드](https://docs.djangoproject.com/en/3.2/ref/models/fields/)가 있다.
+
+<br>
+
+### 7-2. Migrations
+
+<br>
+
+- 주요 명령어
+  - makemigrations
+    - `python manage.py makemigration`
+    - 새로운 DB 설계도를 만들 때 사용
+  - migrate
+    - `python manage.py migrage`
+    - 명령어로 만든 설계도를 실제 DB에 반영
+- 기타 명령어
+  - showmigrations
+    - `python manage.py showmigrations`
+    - 기타 명령어
+    - 잘 반영 됐는지의 여부 파악 용도
+    - `X` 표시가 있으면 잘 된것
+  - sqlmigrate
+    - ` python manage.py sqlmigrate [앱 이름] [파일 번호] `
+    - 해당 설계도가 실제 DB 언어로 어떻게 해석될지 확인할 수 있음
+
+<br>
+
+### 7-3. 추가 필드의 정의
+
+<br>
+
+- 사용 중 models.py 에 변경사항이 생긴 경우 migration 과정
+  - 기존 클래스 내부에 추가 모델 필드 작성 후 다시한번 makemigrations 진행
+  - 만들어져있던 기존 테이블에 새로운 필드가 추가되려면 거기에 기본으로 추가될 어떤 값이라도 반드시 가지고 있어야 한다.
+- DB와 동기화 해서 변경사항을 반영해야 한다.
+
+<br>
+
+### 7-4. ORM
+
+<br>
+
+- Object-Relational-Mapping
+- 객체지향 프로그래밍 언어를 사용하여 다른 언어로 작성된 데이터를 SQL 언어 없이 DB 로 옮길 수 있게 변환시켜주는 기술
+- SQL 언어를 잘 몰라도 DB 조작이 가능하다
+- 객체 지향적 접근으로 인해 **생산성**이 높아진다.
+- 세밀한 조작은 힘들다.
+
+<br>
+
+### 7-5. QuerySet API
+
+<br>
+
+- Query
+  - DB 에 특정 데이터를 보여달라는 요청
+- QuerySet
+  - DB 에서 전달 받은 데이터 모음
+  - 순회가 가능한 QuerySet 형태로 가져와진다.
+  - 단일 객체를 반환 할 때는 QuerySet 이 아닌 클래스의 인스턴스 형태로 가져와진다.
+
+<br>
+
+[위로가기](#목차)
+
+<br>
+
