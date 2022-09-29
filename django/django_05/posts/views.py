@@ -1,6 +1,5 @@
-from asyncio.windows_events import NULL
-from email.policy import default
 from django.shortcuts import render, redirect
+from datetime import date
 from .models import Todo
 
 # Create your views here.
@@ -19,15 +18,16 @@ def index(request):
 def create(request):
     content = request.GET.get("content")
     priority = request.GET.get("priority")
-    created_at = request.GET.get("created_at")
     deadline = request.GET.get("deadline")
 
+    p = int(priority)
     todo = Todo()
     todo.content = content
-    if priority:
-        todo.priority = priority
-    if created_at:
-        todo.created_at = created_at
+    if p:
+        if p > 5 or p < 1:
+            todo.priority = 3
+        else:
+            todo.priority = priority
     if deadline:
         todo.deadline = deadline
     todo.save()
@@ -38,6 +38,7 @@ def create(request):
 def update(request, pk):
     todo = Todo.objects.get(id=pk)
     todo.completed = True
+    todo.completed_at = date.today()
     todo.save()
     return redirect("posts:index")
 

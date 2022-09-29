@@ -1,11 +1,18 @@
+* {
+  font-family: 'MaruBuriLight';
+}
+
 a {
   text-decoration: none;
 }
 
-ul {
-  list-style: none;
+.cardscroll {
+  height: 200px;
+  overflow: auto;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
-li {
-  padding: 0;
+.card {
+  overflow: auto;
 }
