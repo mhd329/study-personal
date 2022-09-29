@@ -29,9 +29,7 @@ SECRET_KEY = os.path.join(BASE_DIR, "secrets.json")
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1",
-    ".herokuapp.com",
+    "*",
 ]
 
 
