@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
   <meta charset="UTF-8">
@@ -14,9 +14,9 @@
   <link rel="shortcut icon" href="{% static 'css/journal-check.png' %}">
 </head>
 
-<body class="text-center">
+<body>
   <nav class="navbar navbar-expand-lg bg-dark position-sticky top-0 opacity-75">
-    <div class="container">
+    <div class="container text-center">
       <a class="navbar-brand text-white" href="index.html">mhd329 TIL</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,11 +50,11 @@
     </div>
   </nav>
   {% block contents %}
-  {% endblock %}
+  {% endblock contents %}
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-    crossorigin="anonymous"></script>
-  <footer class="bg-dark position-fixed bottom-0 w-100 opacity-75">
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
+    </script>
+  <footer class="bg-dark position-fixed bottom-0 w-100 opacity-75 text-center">
     <h3 class="text-secondary fs-6 mt-3 pb-3">
       <i>
         29. Sept. 2022.

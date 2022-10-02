@@ -1,6 +1,7 @@
+# memo ignore
 
 secrets.json
-*.csv
+django_05_pjt/option.py
 
 ### Django ###
 *.log

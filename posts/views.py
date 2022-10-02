@@ -10,6 +10,7 @@ def index(request):
     }
     return render(request, "posts/index.html", context)
 
+
 def create(request):
     content = request.GET.get("content")
     priority = request.GET.get("priority")
