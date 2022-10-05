@@ -79,6 +79,12 @@
 
 [8. Django ModelForm](#8-Django-ModelForm)
 
+>[8-1. ModelForm 사용방법](#8-1-ModelForm-사용방법)
+>
+>[8-2. ModelForm 활용 로직](#8-2-ModelForm-활용-로직)
+>
+>[8-3. ModelForm instance](#8-3-ModelForm-instance)
+
 <br>
 
 ## 1. 인터넷 기초
@@ -891,7 +897,12 @@ urlpatterns = [
 - HTML Form 과 Django Model 은 UI 와 DB 의 관계
   - 유효성 검증이 필요하다.
   - 서버측에서 필수적으로 처리해야 한다.
-- 모델 폼 사용 방법
+
+<br>
+
+### 8-1. ModelForm 사용방법
+
+<br>
 
 ```python
 from django import forms
@@ -921,4 +932,65 @@ from .models import [모델 이름]
 6. 만들어진 객체를 `context` 에 전달한다.
 
 7. html 문서에서 Input Field 를 사용하여 모델 폼을 생성한다.
+   - 폼 렌더링 옵션들
+     - `as_p()`
+       - 각 필드를 단락으로 감싸기
+     - `as_ul()`
+       - 각 필드를 리스트로 감싸기
+       - `ul` 태그는 직접 작성해야 한다.
+     - `as_table()`
+       - 각 필드를 테이블로 감싸기
 
+
+<br>
+
+### 8-2. ModelForm 활용 로직
+
+<br>
+
+- 요청 방식에 따른 분기
+
+  - `GET` 요청을 받았을 때,
+
+    -  모델 폼을 가져온 다음 `context` 에 담아서 페이지에 폼을 렌더링
+
+  - 해당 폼이 있는 페이지 내에서 다시 `POST` 요청을 받았을 때,
+
+    - 요청이 모델 폼의 요구조건에 맞게 작성이 되었는지 유효성 검사
+
+      - 검사 성공 시 DB 에 저장
+
+      - 검사 실패 시 기존 폼의 `context` 내용을 현재 페이지의 Form 으로 다시 전달
+
+- `form` 인스턴스의 `errors` 속성
+
+  - `is_valid()` 의 반환 값이 `False` 인 경우 `form` 인스턴스의 `errors` 속성에 값이 작성된다.
+  - 검증 실패의 원인이 딕셔너리의 형태로 작성된다.
+    - `form.errors`
+
+<br>
+
+### 8-3. ModelForm instance
+
+<br>
+
+- ModelForm 의 instance 는 수정 대상이 되는 객체를 지정한다.
+
+```python
+[인스턴스 이름] = [모델 이름].objects.get(pk=pk)
+[모델 폼 인스턴스 이름] = [모델 폼 이름](instance=[인스턴스 이름])
+context = {
+	"[모델 폼 인스턴스 이름]": [모델 폼 인스턴스 이름],
+}
+```
+
+```html
+{% csrf_token %}
+{{ [모델 폼 인스턴스 이름].as_p }}
+```
+
+<br>
+
+[위로가기](#목차)
+
+<br>

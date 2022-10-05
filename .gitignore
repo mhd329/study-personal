@@ -4,6 +4,7 @@
 # 깃 이그노어 통합
 # 최종 수정일 2022 08 24
 
+sqld 공부/*.pdf
 수업 자료/
 *.sqlite3
 *.csv
@@ -20,6 +21,7 @@ media
 # 내 서버
 
 django_02_venv/
+secrets.json
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
 # in your Git repository. Update and uncomment the following line accordingly.
