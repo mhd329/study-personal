@@ -85,6 +85,16 @@
 >
 >[8-3. ModelForm instance](#8-3-ModelForm-instance)
 
+[9. Admin](#9-Admin)
+
+[10. Static files](#10-Static-files)
+
+[11. Django Auth](#11-Django-Auth)
+
+>[11-1. User model 활용하기](#11-1-User-model-활용하기)
+>
+>[11-2. 회원 가입](#11-2-회원-가입)
+
 <br>
 
 ## 1. 인터넷 기초
@@ -988,6 +998,275 @@ context = {
 {% csrf_token %}
 {{ [모델 폼 인스턴스 이름].as_p }}
 ```
+
+<br>
+
+[위로가기](#목차)
+
+<br>
+
+## 9. Admin
+
+<br>
+
+- automatic admin interface
+
+  - 장고에서는 관리자페이지를 자동으로 생성하는 기능이 있다.
+
+  - 관리자 페이지
+
+    - 모델 클래스를 `admin.py` 에 등록하고 관리
+
+      ```python
+      from django.contrib import admin
+      from .models import [모델 이름]
+      
+      admin.site.register([모델 이름])
+      ```
+
+    - 레코드 생성 여부 확인에 매우 유용하며 직접 레코드를 기록 할 수도 있다.
+
+  - admin 계정 생성
+
+    - `python manage.py createsuperuser`
+    - username 과 password 를 입력해 관리자 계정을 생성
+      - email은 선택사항이기 때문에 입력하지 않고 enter를 입력해도 된다.
+
+<br>
+
+[위로가기](#목차)
+
+<br>
+
+## 10. Static files
+
+<br>
+
+- 웹 서버는 특정한 위치에 있는 자원을 요청받은 다음,
+
+- 그것을 제공하는 응답을 처리하는 것이 기본 동작이다.
+
+  - 어떤 URL 에 담겨있는 resource
+    - HTTP request 로 요청
+  - HTTP response 에 담아서 serving
+
+- 웹 서버는 요청 받은 주소로 서버에 존재하는 static resource 를 제공
+
+- static resource
+
+  - 응답할 때 별도의 처리 없이 그대로 보여지는 파일
+  - 이미지, Java script, CSS 같은 미리 준비된 추가 파일
+  - 고정되어 있고 움직이지 않는 파일
+  - 서비스 중에도 추가되거나 변경되지 않음
+    - django 에서는 이러한 파일들을 static file 이라고 한다.
+    - staticfiles 앱을 통해 정적 파일과 관련된 기능을 제공한다.
+
+- 정적 파일 활용
+
+  - `django.contrib.staticfiles` 가 `INSTALLED_APPS` 에 포함되어 있는지 확인
+
+  - `settings.py` 에서 `STATIC_URL` 을 정의
+
+    - `STATIC_URL`
+      - `STATIC_ROOT` 에 있는 정적 파일을 참조할 때 사용할 URL
+      - 개발 단계에서는 실제 정적 파일들이 저장되어 있는 `[앱]/static` 경로 외에도 `STATICFILES_DIRS` 에 정의된 추가 경로들을 탐색
+      - 실제 경로나 파일이 아니다.
+        - URL 만 존재
+      - 비어있지 않은 값으로 설정한다면 반드시 `/` 로 끝나야 한다.
+    - `STATIC_ROOT`
+      - `collectstatic` 이 배포를 위해 정적 파일을 수집하는 디렉토리의 절대 경로
+        - django 프로젝트에서 사용하는 모든 정적 파일을 한 곳에 모아 넣는 경로이다.
+        - 직접 작성하지 않으면 django 프로젝트에서는 `settings.py` 에 작성되어있지 않다.
+      - 개발 과정에서 `settings.py` 의 DEBUG 값이 True 로 설정되어 있으면 해당 값은 작용되지 않는다.
+      - 실 서비스 환경에서 django 의 모든 정적 파일을 다른 웹 서버가 직접 제공하기 위함이다.
+
+  - 템플릿에서 static 태그를 사용하여 지정된 상대경로에 대한 URL 을 빌드
+
+    ```html
+    {% load static %}
+    ...
+    <img src="{% static '[static 하위 경로의 이름]/[사용할 이미지 이름]' %}"
+    ```
+
+  - `[앱 이름]/static/[앱 이름]/[사용할 파일]`
+
+    - 앱의 static 디렉토리에 정적 파일 저장
+
+  - `STATICFILES_DIRS`
+
+    - 기본 경로인 `[앱]/static` 경로를 사용하는 것 외에 추가적인 정적 파일 경로를 정의하는 리스트
+
+    - 추가 파일 디렉토리에 대한 전체 경로를 포함하는 문자열 목록으로 작성
+
+      ```python
+      STATICFILES_DIRS = [
+          BASE_DIR / 'static',
+      ]
+      ```
+
+  - `STATIC_URL = "/static/"`
+  - `STATIC_ROOT = BASE_DIR / "staticfiles"`
+    - 루트 디렉토리 하위 `staticfiles` 디렉토리로 모든 정적 파일들이 모이게 된다.
+
+<br>
+
+[위로가기](#목차)
+
+<br>
+
+## 11. Django Auth
+
+<br>
+
+- django 에서 기본적으로 제공하는 장고 인증 시스템은 인증과 권한부여를 함께 처리
+
+  - User
+  - 권한 및 그룹
+  - 암호 해시 시스템
+  - Form 및 View 도구
+  - 기타 적용가능한 시스템
+
+- 필수 구성은 `settings.py` 의 `INSTALLEND_APPS` 에서 확인 가능
+
+  - `django.contrib.auth`
+
+- 사용하기 위한 사전 설정
+
+  - accounts 앱 생성 및 등록
+
+    ```python
+    INSTALLED_APPS = [
+        ['다른 앱 이름'],
+    	'accounts',
+        ...
+    ]
+    ```
+
+    - **django 에서 auth 와 관련된 경로나 키워드들은 내부적으로 accounts 라는 이름으로 사용되고 있기 때문에 이름으로 accounts 가 권장됨**
+
+  - url 분리 및 매핑
+
+<br>
+
+### 11-1. User model 활용하기
+
+<br>
+
+- Django 는 기본적인 인증 시스템과 여러 필드가 포함된 User model 을 제공한다.
+
+- 대부분의 개발 환경에서 기본 User model 을 커스텀하여 사용한다.
+
+  - Django 의 User model 은 기본적으로 username 을 식별 값으로 사용하는데 다른 것을 식별 값으로 사용하게 할 수 있다.
+
+- User model 대체 작업은 프로젝트의 모든 migrations 혹은 첫 migrate 를 실행하기 전에 마쳐야 한다.
+
+- Django 은 `AUTH_USER_MODEL` 설정값으로 기본 유저모델을 재정의 할 수 있도록 함
+
+  - `AUTH_USER_MODEL`
+
+    - 프로젝트에서 User 를 나타낼 때 사용하는 모델
+    - 마이그레이션 이후에는 변경할 수 없음
+    - `AUTH_USER_MODEL` 가 참조하는 모델은 첫 번째 마이그레이션에서도 사용할 수 있어야 하기 때문에,
+      - 첫 번째 마이그레이션에서 이미 확정이 되어있어야 한다.
+      - 기본 값은 `AUTH_USER_MODEL = "auth.User"` 이다.
+      - [원본 settings.py](https://github.com/django/django/blob/main/django/conf/global_settings.py)
+
+  - 재정의 하는 방법
+
+    - `AbstractUser` 를 상속받는 커스텀 User 클래스를 작성
+
+    - 기존의 User 클래스도 `AbstractUser` 를 상속받기 때문에 커스텀 User 클래스도 똑같은 모습이다.
+
+      ```python
+      from django.contrib.auth.models import AbstractUser
+      
+      class User(AbstractUser):
+      	pass
+      ```
+
+    - `settings.py` 에 `AUTH_USER_MODEL = "accounts.User"` 작성
+
+    - `admin.py` 에 커스텀 User 모델을 등록
+
+      ```python
+      from django.contrib import admin
+      from django.contrib.auth.admin import UserAdmin
+      from .models import User
+      
+      admin.site.register(User, UserAdmin)
+      ```
+
+    - 변경이 완료된 후 DB를 열어보면 `auth_user` 테이블 대신 `accounts_user` 테이블을 사용하게 된다.
+
+    - User 객체는 인증 시스템의 가장 기본
+
+      - username
+      - password
+      - email
+      - first_name
+      - last_name
+
+    - password 의 관리
+
+      - Django 에서는 기본으로 PBKDF2 를 사용하여 저장한다.
+      - 단방향 해시함수를 활용하여 비밀번호를 다이제스트로 암호화하며 복호화가 불가능함
+      - 단방향 해시함수는 MD5, SHA-1, SHA-256 (django 에서 사용중) 등이 있다.
+        - 단방향 해시함수의 경우 레인보우 공격 및 무차별 대입 공격 등의 문제가 발생할 수 있다.
+        - 보완하기 위한 기법
+          - 솔팅
+            - 패스워드에 임의의 문자열을 추가하여 다이제스트를 생성
+          - 키 스트레칭
+            - 해시를 여러 번 반복하여 시간을 늘림
+
+    - User 객체의 활용법
+
+      - User 생성
+
+      - User 비밀번호 변경
+
+      - User 인증
+
+        ```python
+        user = User.objects.create_user(['유저 아이디'], ['유저 이메일'], ['비밀번호'])
+        ###
+        user = User.objects.get(pk=2)
+        user.set_password(['새 비밀번호'])
+        user.save()
+        ###
+        from django.contrib.auth import authenticate
+        user = authenticate(username='john', password='secret')
+        ```
+
+<br>
+
+### 11-2. 회원 가입
+
+<br>
+
+- 주어진 username 과 password 로 권한이 없는 새 user 를 생성하는 모델폼
+
+- [세 개의 필드를 가짐](https://github.com/django/django/blob/stable/3.2.x/django/contrib/auth/forms.py#L75)
+
+  - username
+  - password1
+  - password2
+
+- 회원 가입 로직을 작성하기 위해 사용되는 UserCreationForm 에는 커스텀 유저 모델을 상속시켜줘야 한다.
+
+  ```python
+  from django.contrib.auth import get_user_model
+  from django.contrib.auth.forms import UserCreationForm
+  
+  class CustomUserCreationForm(UserCreationForm):
+  	class Meta(UserCreationForm.Meta):
+  		model = get_user_model()
+  ```
+
+- `get_user_model()`
+
+  - 현재 프로젝트에서 활성화된 사용자 모델을 반환
+  - Django 에서는 User 클래스는 커스텀을 통해 변경 가능하다.
+    - 직접 참조하는 대신 `get_user_model()` 을 사용할 것을 권장한다.
 
 <br>
 
