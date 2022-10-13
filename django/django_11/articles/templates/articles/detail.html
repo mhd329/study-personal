@@ -1,14 +1,53 @@
 {% extends 'base.html' %}
+{% load django_bootstrap5 %}
 {% block content %}
 
 <div class="container">
-  <h1>{{ article.title }}</h1>
-  <p>{{ article.content }}</p>
-  <p>{{ article.writer }}</p>
-  <hr>
-  <a href="{% url 'articles:update' article.id %}" class="btn btn-primary mx-3">수정</a>
-  <a href="{% url 'articles:delete' article.id %}" class="btn btn-primary mx-3">삭제</a>
-  <a href="{% url 'articles:bbs' %}" class="btn btn-primary mx-3">목록으로</a>
+  <div>
+    <h1>{{ article.title }}</h1>
+    <p>{{ article.content }}</p>
+    <p>{{ article.writer }}</p>
+  </div>
+  <div class="text-center">
+    <form action="{% url 'articles:add-like' article.id %}" method="POST">
+      {% csrf_token %}
+      <input type="submit" class="btn btn-outline-primary" value="좋아요">
+    </form>
+  </div>
+  <div class="text-center">
+    <p><b>{{ like_|length }}개의 좋아요</b></p>
+  </div>
+  <div>
+    {% if comments %}
+    <p><b>{{ comments|length }}개의 댓글이 있습니다.</b></p>
+    {% endif %}
+    {% for comment in comments %}
+    <p>{{ comment.writer }} : {{ comment.content }}</p>
+    {% if comment.created_at == comment.updated_at %}
+    {{ comment.created_at.as_p }}
+    {% else %}
+    <p>{{ comment.updated_at }} (최근 수정됨)</p>
+    {% endif %}
+    <hr>
+    {% empty %}
+    <p>댓글이 없습니다.</p>
+    <hr>
+    {% endfor %}
+  </div>
+  {% if request.user.username %}
+  <form action="{% url 'articles:add-comment' article.id %}" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form comment_form %}
+    <input type="submit" class="btn btn-primary" value="작성완료">
+  </form>
+  {% else %}
+  <a class="btn btn-primary" href="{% url 'accounts:login' %}">로그인 후 댓글 쓰기</a>
+  {% endif %}
+  <div class="my-5">
+    <a href="{% url 'articles:update' article.id %}" class="btn btn-primary mx-3">수정</a>
+    <a href="{% url 'articles:delete' article.id %}" class="btn btn-primary mx-3">삭제</a>
+    <a href="{% url 'articles:bbs' %}" class="btn btn-primary mx-3">목록으로</a>
+  </div>
 </div>
 
 {% endblock content %}
