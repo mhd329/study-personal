@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for user in users %}
+
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th class="col-1">회원</th>
+      <th class="col-4">아이디</th>
+      <th class="col-3">이름</th>
+      <th class="col-4">메일</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    {% for user in users %}
+    <a href="{% url 'accounts:userinfo' user.id %}">
+      <tr>
+        <th>{{ user.id }}</th>
+        <td>{{ user.username }}</td>
+        <td>{{ user.full_name }}</td>
+        <td>{{ user.email }}</td>
+      </tr>
+    </a>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock content %}

@@ -1234,7 +1234,7 @@ context = {
         user.save()
         ###
         from django.contrib.auth import authenticate
-        user = authenticate(username='john', password='secret')
+        user = authenticate(username=['유저 아이디'], password=['비밀번호'])
         ```
 
 <br>

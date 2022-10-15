@@ -164,11 +164,11 @@
    - 즉 만들때 `django-admin startproject [프로젝트 이름] .` 으로 했으니,
    - `.` 의 위치에 `STATIC_ROOT` 를 만들고 거기로 `python manage.py collectstatic` 해 주면 된다.
 3. 깃 배쉬에서 로그인이 안 될 때가 있는데 vscode 로 하면 잘 될 수도 있다.
-4. 미디어 파일은 현재까지 우리가 배운 지식수준으로는 안 되는게 정상인 것 같다.
+4. 미디어 파일은 현재까지 우리가 배운 지식수준 (10월 16일 기준) 으로는 안 되는게 정상인 것 같다.
    - 이미지파일을 올리려면 static 을 통해서 넣으면 잘 된다.
 5. `git push heroku master` 할 때 자꾸 `rejected` 가 될 때, 로그에 `Building wheel for twisted-iocpsupport (pyproject.toml) did not run successfully` 라는 기록이 있으면 `requirements.txt` 에서 `twisted-iocpsupport` 랑 `twist` 들어간 모듈 두 개를 `requirements.txt` 에서 지우고 하면 된다.
 6. `heroku run python manage.py migrate` 가 안된다면 깃 이그노어에 `.sqlite3` 를 제외하면 된다.
-7. `heroku run python manage.py createsuperuser` 로 어드민이 안 들어가지면 로컬에서 `python manage.py createsuperuser` 로 admin 계정을 만든 다음 heroku 로 마이그레이트 하고 들어가면 되는 경우가 있다.
+7. `heroku run python manage.py createsuperuser` 로 운영자 계정을 만들었는데 정작 배포된 사이트의 /admin 에서 해당 계정으로 안 들어가지면 로컬에서 `python manage.py createsuperuser` 로 admin 계정을 만든 다음 heroku 로 마이그레이트 하고 들어가면 되는 경우가 있다.
 8. `runtime.txt` 에 파이썬의 버전을 적을 때 대문자가 아니고 소문자이다.
    - `python --version` 하면 `Python X.X.X` 와 같이 **대문자로 결과가 출력되는데 그대로 복붙하면 버전이 안 맞는다고 할 수가 있다.**
    - 반드시 소문자로 `python-X.X.X` 를 적는다.
