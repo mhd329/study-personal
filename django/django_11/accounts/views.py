@@ -1,4 +1,4 @@
-from .forms import CustomCreationUserModel
+from .forms import CustomCreationUserForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth import login as login_
 from django.contrib.auth import logout as logout_
@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 def sign_up(request):
     if request.method == "POST":
-        form = CustomCreationUserModel(request.POST)
+        form = CustomCreationUserForm(request.POST)
         if form.is_valid():
             user = form.save()
             login_(request, user)
@@ -16,7 +16,7 @@ def sign_up(request):
         else:
             pass
     else:
-        form = CustomCreationUserModel()
+        form = CustomCreationUserForm()
     context = {
         "form": form,
     }
