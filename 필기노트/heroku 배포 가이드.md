@@ -139,7 +139,7 @@
    - 클릭하면 창이 바뀌면서 로그인이 된다.
 5. `heroku create`
    - 이미 배포를 했고 업데이트 하려는 경우에는 여러번 create 할 필요는 없다.
-     - 1~3 까지 진행하고 6~7 과정만 진행하면 된다.
+     - 1\~3 까지 진행하고 6\~7 과정만 진행하면 된다.
 6. ` git push heroku master`
    - 기존에 서비스 되고 있던 페이지의 DB 는 다 초기화 되기 때문에 업데이트 하는 경우에는 미리 백업하고 진행해야 한다.
    - [에러](#3-에러-모음집)가 나면 `git push heroku HEAD:master` 를 하라는데 난 잘 모르겠다.
@@ -168,11 +168,12 @@
    - 아직은 잘 모르겠다.
    - 참고로 이미지파일을 올리려면 static 을 통해서 넣으면 잘 된다.
 5. Heroku [dynos](https://www.heroku.com/dynos) 라는 컨테이너 관리 기능은 컨테이너를 일정 주기로 초기화시킨다.
+   - 무료 버전 heroku는 30분 동안 변동이 없으면 sleep 모드로 들어가면서 파일들을 삭제시킨다.
+   - 유료 버전 heroku 는 매일 다시 시작된다.
    - 그렇기 때문에 웹 상에 여러 게시글을 올려도 일정 시간이 지나면 초기화된다.
-   - 자료 참고 : [헤로쿠 파일이 삭제되는 이유](https://help.heroku.com/K1PPS2WM/why-are-my-file-uploads-missing-deleted-from-the-application)
+     - 자료 참고 : [헤로쿠 파일이 삭제되는 이유](https://help.heroku.com/K1PPS2WM/why-are-my-file-uploads-missing-deleted-from-the-application)
    - 해결책
      - 별도 애드온을 추가
-     - 유료버전 헤로쿠 쓰기
      - aws 어쩌구 해보기 (잘 모르겠다...)
 6. `git push heroku master` 할 때 자꾸 `rejected` 가 될 때, 로그에 `Building wheel for twisted-iocpsupport (pyproject.toml) did not run successfully` 라는 기록이 있으면 `requirements.txt` 에서 `twisted-iocpsupport` 랑 `twist` 들어간 모듈 두 개를 `requirements.txt` 에서 지우고 하면 된다.
 7. `heroku run python manage.py migrate` 가 안된다면 깃 이그노어에 `.sqlite3` 를 제외하면 된다.
