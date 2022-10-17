@@ -167,8 +167,13 @@
 4. 기본 세팅으로는 미디어 파일이 Heroku 에서 잘 작동이 안되는데 Heroku 에서 별도 add-on 을 쓰면 되는 것 같다.
    - 아직은 잘 모르겠다.
    - 참고로 이미지파일을 올리려면 static 을 통해서 넣으면 잘 된다.
-5. Heroku dynos 라는 컨테이너 관리 기능은 컨테이너를 일정 주기로 초기화시킨다.
-   - 그렇기 때문에 웹 상에 여러 게시글을 올려도 일정 시간이 지나면 초기화된다. 
+5. Heroku [dynos](https://www.heroku.com/dynos) 라는 컨테이너 관리 기능은 컨테이너를 일정 주기로 초기화시킨다.
+   - 그렇기 때문에 웹 상에 여러 게시글을 올려도 일정 시간이 지나면 초기화된다.
+   - 자료 참고 : [헤로쿠 파일이 삭제되는 이유](https://help.heroku.com/K1PPS2WM/why-are-my-file-uploads-missing-deleted-from-the-application)
+   - 해결책
+     - 별도 애드온을 추가
+     - 유료버전 헤로쿠 쓰기
+     - aws 어쩌구 해보기 (잘 모르겠다...)
 6. `git push heroku master` 할 때 자꾸 `rejected` 가 될 때, 로그에 `Building wheel for twisted-iocpsupport (pyproject.toml) did not run successfully` 라는 기록이 있으면 `requirements.txt` 에서 `twisted-iocpsupport` 랑 `twist` 들어간 모듈 두 개를 `requirements.txt` 에서 지우고 하면 된다.
 7. `heroku run python manage.py migrate` 가 안된다면 깃 이그노어에 `.sqlite3` 를 제외하면 된다.
 8. `heroku run python manage.py createsuperuser` 로 운영자 계정을 만들었는데 정작 배포된 사이트의 /admin 에서 해당 계정으로 안 들어가지면 로컬에서 `python manage.py createsuperuser` 로 admin 계정을 만든 다음 heroku 로 마이그레이트 하고 들어가면 되는 경우가 있다.
