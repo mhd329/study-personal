@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title">{{ article.title }}</h1>
+      <h3 class="card-subtitle mb-2 text-muted">{{ article.user }}</h3>
+      <p class="card-text">{{ article.content }}</p>
+      <p class="card-text">{{ article.created_at }} | {{ article.updated_at }}</p>
+      <p>
+        <a href="{% url 'articles:update' article.pk %}" class="btn btn-primary">수정하기</a>
+        <a href="{% url 'articles:delete' article.pk %}" class="btn btn-primary">삭제하기</a>
+      </p>
+
+      {% if request.user.is_authenticated %}
+      <div class="container">
+        <form action="" method="POST" class="form">
+          {% csrf_token %}
+          {% bootstrap_form form %}
+          {% bootstrap_button button_type="submit" content="작성" %}
+        </form>
+      </div>
+      {% else %}
+      <div>
+        <p>댓글 작성은 로그인 후에 가능합니다.</p>
+      </div>
+      {% endif %}
+
+      {% for comment in article.comment_set.all %}
+      <div>
+        <p>{{ comment.user }}</p>
+        <p>{{ comment.content }}</p>
+      </div>
+      {% empty %}
+      <div class="text-center">
+        <svg style="width: 5rem; height: 5rem;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+          fill="currentColor" class="bi bi-emoji-frown animate__animated animate__bounceIn" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+          <path
+            d="M4.285 12.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z" />
+        </svg>
+        <h1 class="my-4 display-6 animate__animated animate__bounceIn">
+          아직 댓글이 없어요!
+        </h1>
+        <p class="lead fs-6 animate__animated animate__bounceIn">첫 댓글을 작성해보세요!</p>
+      </div>
+      {% endfor %}
+      <p>
+        <a href="{% url 'articles:index'%}" class="btn btn-primary">목록</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+
+<div class="container">
+  {% csrf_token %}
+  <form action="" method="POST">
+    <h1 class="card-title">정말로 탈퇴 하시겠습니까?</h1>
+    <input class="btn btn-danger" type="submit" value="예">
+    <a href="{% url 'articles:detail' article.pk %}" class="btn btn-primary">아니오</a>
+  </form>
+</div>
+
+{% endblock content %}

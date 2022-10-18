@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  {% if other_user == now_user or now_user.is_superuser %}
+  <div>
+    <h1>{{ other_user.username }}</h1>
+    <p>{{ other_user.full_name }}</p>
+    <p>{{ other_user.email }}</p>
+    <p>{{ other_user.userphonenumber.phone }}</p>
+    <p>{{ other_user.date_joined|date:"y년 m월 d일 f:s" }}</p>
+  </div>
+  <div class="d-flex">
+    <a href="{% url 'accounts:update' other_user.pk %}" class="btn btn-primary">회원정보 수정</a>
+    <a href="{% url 'accounts:change' %}" class="btn btn-primary mx-2">비밀번호 변경</a>
+    <a href="{% url 'accounts:withdrawal' other_user.pk %}" class="btn btn-danger ms-auto">회원 탈퇴</a>
+  </div>
+  <div>
+    
+  </div>
+  {% else %}
+  <h1>권한이 없습니다.</h1>
+  {% endif %}
+</div>
+
+{% endblock content %}
