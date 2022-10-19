@@ -181,14 +181,11 @@ def withdrawal(request, pk):
     user = get_user_model().objects.get(id=pk)
     w = random.choice(wd)
     b = random.choice(bye)
-    r = []
-    r.append(w, b)
-    rr = random.choice(r)
     if request.method == "POST":
         if request.user.full_name:
             messages.info(request, f"{request.user.full_name}!, {w}")
         else:
-            messages.info(request, f"{rr}")
+            messages.info(request, f"{b}")
         request.user.delete()
         logout_(request)
         return redirect("articles:index")

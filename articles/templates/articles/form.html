@@ -3,14 +3,14 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container mt-5 w-50">
   {% if request.resolver_match.url_name == "create" %}
-  <h1>글쓰기</h1>
+  <h1 class="mt-5 mb-3">글쓰기</h1>
   <form action="" method="POST" class="form">
     {% csrf_token %}
     {% bootstrap_form form %}
     {% bootstrap_button button_type="submit" content="작성완료" %}
-    <a href="{% url 'articles:index' %}" class="btn btn-primary">돌아가기</a>
+    <a href="{% url 'articles:index' %}" class="btn btn-primary ms-2">돌아가기</a>
   </form>
   {% else %}
   {% if user == article.user or user.is_superuser %}
@@ -19,7 +19,7 @@
     {% csrf_token %}
     {% bootstrap_form form %}
     {% bootstrap_button button_type="submit" content="수정완료" %}
-    <a href="{% url 'articles:index' %}" class="btn btn-primary">돌아가기</a>
+    <a href="{% url 'articles:index' %}" class="btn btn-primary ms-2">돌아가기</a>
   </form>
   {% else %}
   <h1>권한이 없습니다.</h1>

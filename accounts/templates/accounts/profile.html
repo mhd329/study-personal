@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
-
+{% load slice_title %}
 {% block content %}
 
 <div class="container">
   <div>
-    <table class="table table-bordered table-hover">
+    <h3 class="mt-5 mb-4 text-center">내 정보</h3>
+    <table class="table table-bordered table-hover text-center">
       <thead class="table-primary">
         <tr>
           <th class="col-1">아이디</th>
@@ -28,24 +29,28 @@
   {% if other_user == now_user or now_user.is_superuser %}
   <div class="d-flex">
     <a href="{% url 'accounts:update' other_user.pk %}" class="btn btn-primary">회원정보 수정</a>
-    <a href="{% url 'accounts:password' other_user.pk %}" class="btn btn-primary mx-2">비밀번호 변경</a>
+    <a href="{% url 'accounts:password' other_user.pk %}" class="btn btn-primary ms-2">비밀번호 변경</a>
     <a href="{% url 'accounts:withdrawal' other_user.pk %}" class="btn btn-danger ms-auto">회원 탈퇴</a>
   </div>
   <hr>
   <div>
-    <h1>작성 댓글 모음</h1>
-    <h3>현재까지 {{ other_user.comment_set.order_by|length }} 개의 댓글을 작성하였습니다.</h3>
-    <table class="table table-bordered table-hover">
+    <h3>작성 댓글 모음</h3>
+    <h6>현재까지 <span class="text-primary">{{ other_user.comment_set.order_by|length }}</span> 개의 댓글을 작성하였습니다.</h6>
+    <table class="table table-bordered table-hover text-center">
       <thead class="table-primary">
         <tr>
-          <th class="col-6">글 제목</th>
-          <th class="col-6">댓글 내용</th>
+          <th class="col-8">글 제목</th>
+          <th class="col-4">댓글 내용</th>
         </tr>
       </thead>
       <tbody>
         {% for comment in other_user.comment_set.order_by %}
         <tr>
-          <th><a href="{% url 'articles:detail' comment.article.pk %}">{{ comment.article.title }}</a></th>
+          <th>
+            <a href="{% url 'articles:detail' comment.article.pk %}">
+              {{ comment.article.title|slicer:comment.article.title }}
+            </a>
+          </th>
           <td>{{ comment.content }}</td>
         </tr>
         {% endfor %}
@@ -53,22 +58,20 @@
     </table>
   </div>
   <div>
-    <h1>작성 글 모음</h1>
-    <h3>현재까지 {{ other_user.article_set.order_by|length }} 개의 글을 작성하였습니다.</h3>
-    <table class="table table-bordered table-hover">
+    <h3>작성 글 모음</h3>
+    <h6>현재까지 <span class="text-primary">{{ other_user.article_set.order_by|length }}</span> 개의 글을 작성하였습니다.</h6>
+    <table class="table table-bordered table-hover text-center">
       <thead class="table-primary">
         <tr>
-          <th class="col-3">글 제목</th>
-          <th class="col-3">글 내용</th>
-          <th class="col-3">작성일</th>
-          <th class="col-3">수정일</th>
+          <th class="col-8">글 제목</th>
+          <th class="col-2">작성일</th>
+          <th class="col-2">수정일</th>
         </tr>
       </thead>
       <tbody>
         {% for article in other_user.article_set.order_by %}
         <tr>
-          <th><a href="{% url 'articles:detail' article.pk %}">{{ article.title }}</a></th>
-          <td>{{ article.content }}</td>
+          <th><a href="{% url 'articles:detail' article.pk %}">{{ article.title|slicer:article.title }}</a></th>
           <td>{{ article.created_at }}</td>
           <td>{{ article.updated_at }}</td>
         </tr>

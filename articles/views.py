@@ -1,7 +1,6 @@
 from django.contrib import messages
 from .models import Article, Comment, Like
 from django.shortcuts import render, redirect
-from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from .forms import ArticleForm, CommentForm, MiniCommentForm
 
@@ -146,19 +145,23 @@ def comment_delete(request, article_pk, comment_pk):
 
 
 @login_required
-def add_like(request, article_pk, user_pk):
-    target_article = Article.objects.get(id=article_pk)
-    target_user = get_user_model().objects.get(id=user_pk)
-    if Like.objects.filter(user=target_user):
-        l = Like.objects.filter(user=target_user)
-        print(l)
-        if l.get(article_id=target_article.pk).exists():
-            like_ = Like.objects.get(user=target_user)
+def add_like(request, pk):
+    target_article = Article.objects.get(id=pk)
+    target_user = request.user
+    try:
+        if target_article.like_set.get(user=target_user):
+            like_ = Like.objects.filter(user=target_user, article=target_article)
             like_.delete()
             return redirect("articles:detail", target_article.pk)
-    like_ = Like.objects.create(article=target_article, user=target_user)
-    like_.save()
-    return redirect("articles:detail", target_article.pk)
+        else:
+            like_ = Like.objects.create(article=target_article, user=target_user)
+            like_.save()
+            return redirect("articles:detail", target_article.pk)
+    except:
+        like_ = Like.objects.create(article=target_article, user=target_user)
+        like_.save()
+        messages.success(request, "추천!")
+        return redirect("articles:detail", target_article.pk)
 
 
 # error 처리

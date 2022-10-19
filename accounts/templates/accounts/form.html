@@ -4,21 +4,21 @@
 {% block content %}
 
 
-<div class="container w-25">
+<div class="container w-25 mt-5 mb-5 pb-5">
   {% if request.resolver_match.url_name == "signup" %}
   <h1>회원 가입</h1>
   <form action="" method="POST" class="form">
     {% csrf_token %}
-    <div class="card">
-      <h3>필수 입력</h3>
+    <div class="card pt-4 pb-2 px-3 my-3">
+      <h3 class="text-center mt-2 mb-5">필수 입력</h3>
       {% for field in form %}
       {% if field.name == "username" or field.name == "password1" or field.name == "password2" %}
       <div>{% bootstrap_field field %}</div>
       {% endif %}
       {% endfor %}
     </div>
-    <div class="card">
-      <h3>선택사항</h3>
+    <div class="card pt-4 pb-2 px-3 my-3">
+      <h3 class="text-center mt-2 mb-5">선택사항</h3>
       {% for field in form %}
       {% if field.name != "username" and field.name != "password1" and field.name != "password2" %}
       <div>{% bootstrap_field field %}</div>
@@ -26,8 +26,10 @@
       {% endfor %}
       {% bootstrap_form pn_form %}
     </div>
-    {% bootstrap_button button_type="submit" content="완료" %}
-    <a href="{% url 'articles:index' %}" class="btn btn-primary">취소</a>
+    <div class="mb-5">
+      {% bootstrap_button button_type="submit" content="완료" %}
+      <a href="{% url 'articles:index' %}" class="btn btn-primary ms-2">취소</a>
+    </div>
   </form>
   {% else %}
   {% if other_user == now_user or now_user.is_superuser %}
@@ -37,7 +39,7 @@
     {% bootstrap_form form %}
     {% bootstrap_form pn_form %}
     {% bootstrap_button button_type="submit" content="완료" %}
-    <a href="{% url 'accounts:profile' user.pk %}" class="btn btn-primary">취소</a>
+    <a href="{% url 'accounts:profile' user.pk %}" class="btn btn-primary ms-2">취소</a>
   </form>
   {% else %}
   <h1>권한이 없습니다.</h1>

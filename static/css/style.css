@@ -12,12 +12,8 @@ a {
   text-decoration: none;
 }
 
-.title-a {
-  overflow: hidden;
-  font-weight: bolder;
-  width: 600px;
-  height: 22px;
-  white-space: nowrap;
-  display: inline-block;
-  text-overflow: ellipsis;
+.carousel-control-next,
+.carousel-control-prev,
+.carousel-indicators {
+  filter: invert(100%);
 }
