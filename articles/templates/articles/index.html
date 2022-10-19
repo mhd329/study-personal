@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th class="col-1 text-center">번호</th>
+        <th class="col-7 text-center">제목</th>
+        <th class="col-2 text-center">글쓴이</th>
+        <th class="col-1 text-center">작성일</th>
+        <th class="col-1 text-center">추천</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      {% if request.resolver_match.url_name == "search" %}
+      {% if searched_articles|length != 0 %}
+      {% for article in searched_articles %}
+      <tr>
+        <th class="col-1 text-center">{{ article.pk }}</th>
+        <td class="col-7">
+          <a class="title-a link-primary" href="{% url 'articles:detail' article.pk %}">
+            {{ article.title }}
+          </a>
+          {% if article.comment_set.all|length != 0 %}
+          <span class="align-top">[{{ article.comment_set.all|length }}]</span>
+          {% endif %}
+        </td>
+        <td class="col-2 text-center">{{ article.user.username }}</td>
+        <td class="col-1 text-center">{{ article.created_at|date:"f:s" }}</td>
+        <td class="col-1 text-center">{{ article.like_set.all|length }}</td>
+      </tr>
+      {% endfor %}
+      {% else %}
+      <div class="text-center my-3">
+        <svg style="width: 5rem; height: 5rem;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+          fill="currentColor" class="bi bi-emoji-frown animate__animated animate__bounceIn" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+          <path
+            d="M4.285 12.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z" />
+        </svg>
+        <h1 class="my-4 display-6 animate__animated animate__bounceIn">
+          검색 결과가 없습니다.
+        </h1>
+      </div>
+      {% endif %}
+      {% else %}
+      {% for article in articles %}
+      <tr>
+        <th class="col-1 text-center">{{ article.pk }}</th>
+        <td class="col-7">
+          <a class="title-a link-primary" href="{% url 'articles:detail' article.pk %}">
+            {{ article.title }}
+          </a>
+          {% if article.comment_set.all|length != 0 %}
+          <span class="align-top">[{{ article.comment_set.all|length }}]</span>
+          {% endif %}
+        </td>
+        <td class="col-2 text-center">{{ article.user.username }}</td>
+        <td class="col-1 text-center">{{ article.created_at|date:"f:s" }}</td>
+        <td class="col-1 text-center">{{ article.like_set.all|length }}</td>
+      </tr>
+      {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+{% endblock content %}

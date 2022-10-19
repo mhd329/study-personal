@@ -1,0 +1,1 @@
+web: gunicorn pairproject.wsgi --log-file - 
