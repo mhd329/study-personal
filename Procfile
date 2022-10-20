@@ -1,1 +1,1 @@
-web: gunicorn pairproject.wsgi --log-file - 
+web: gunicorn pjt1018.wsgi --log-file - 
