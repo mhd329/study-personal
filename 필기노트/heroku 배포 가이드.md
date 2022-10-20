@@ -175,6 +175,8 @@
    - 해결책
      - 별도 애드온을 추가
      - aws 어쩌구 해보기 (잘 모르겠다...)
+     - PostgreSQL 쓰면 유지가 되는 것 같은데 현재 확인중에 있다.
+       - 확인되면 업데이트 할 것임
 6. `git push heroku master` 할 때 자꾸 `rejected` 가 될 때, 로그에 `Building wheel for twisted-iocpsupport (pyproject.toml) did not run successfully` 라는 기록이 있으면 `requirements.txt` 에서 `twisted-iocpsupport` 랑 `twist` 들어간 모듈 두 개를 `requirements.txt` 에서 지우고 하면 된다.
 7. `heroku run python manage.py migrate` 가 안된다면 깃 이그노어에 `.sqlite3` 를 제외하면 된다.
 8. `heroku run python manage.py createsuperuser` 로 운영자 계정을 만들었는데 정작 배포된 사이트의 /admin 에서 해당 계정으로 안 들어가지면 로컬에서 `python manage.py createsuperuser` 로 admin 계정을 만든 다음 heroku 로 마이그레이트 하고 들어가면 되는 경우가 있다.
@@ -194,8 +196,12 @@
 ###### 여태 만들었던 페이지들
 
 - [할 일 메모장](https://boiling-temple-99523.herokuapp.com/)
-- [영화 리뷰 팀 프로젝트](https://lit-scrubland-98413.herokuapp.com/reviews/index/)
+- [영화 리뷰 팀 프로젝트](https://lit-scrubland-98413.herokuapp.com/)
 
 ---
 
-<br>
+<div align="center">
+	<h6>
+    	최종 수정일 2022 10 20
+    </h6>
+</div>
