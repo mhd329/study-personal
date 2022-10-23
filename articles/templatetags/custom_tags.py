@@ -19,11 +19,11 @@ def sub_slicer(value, arg: str):
     return value
 
 
-# 9글자 까지만 표시하고 뒤는 ...
+# 7글자 까지만 표시하고 뒤는 ...
 @register.filter()
 def mini_slicer(value, arg: str):
-    if len(arg) > 8:
-        value = arg[:9] + "..."
+    if len(arg) > 7:
+        value = arg[:7] + "..."
     return value
 
 
