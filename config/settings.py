@@ -182,7 +182,7 @@ STATICFILES_LOCATION = "static"
 from boto.s3.connection import S3Connection
 import os
 
-s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
+# s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
 
 AWS_STORAGE_BUCKET_NAME = "django-pjt-02"
 
