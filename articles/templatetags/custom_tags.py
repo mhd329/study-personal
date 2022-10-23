@@ -3,10 +3,27 @@ from django import template
 register = template.Library()
 
 
+# 13글자 까지만 표시하고 뒤는 ...
 @register.filter()
 def slicer(value, arg: str):
     if len(arg) > 12:
         value = arg[:13] + "..."
+    return value
+
+
+# 11글자 까지만 표시하고 뒤는 ...
+@register.filter()
+def sub_slicer(value, arg: str):
+    if len(arg) > 10:
+        value = arg[:11] + "..."
+    return value
+
+
+# 9글자 까지만 표시하고 뒤는 ...
+@register.filter()
+def mini_slicer(value, arg: str):
+    if len(arg) > 8:
+        value = arg[:9] + "..."
     return value
 
 
