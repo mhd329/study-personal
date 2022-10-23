@@ -36,6 +36,7 @@ OTHERS = [
     "accounts",
     "articles",
     "imagekit",
+    "storages",
     "django_bootstrap5",
     "django_extensions",
     "django_cleanup.apps.CleanupConfig",
@@ -169,3 +170,21 @@ DATABASES["default"].update(db_from_env)
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+# aws s3 연결
+
+DEFAULT_FILE_STORAGE = "config.storages.MediaStorage"
+STATICFILES_STORAGE = "config.storages.StaticStorage"
+
+MEDIAFILES_LOCATION = "media"
+STATICFILES_LOCATION = "static"
+
+from boto.s3.connection import S3Connection
+
+# s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
+
+AWS_STORAGE_BUCKET_NAME = 'jeongsu-test'
+
+AWS_S3_REGION_NAME = "ap-northeast-2"
+
+AWS_S3_SIGNATURE_VERSION = "s3v4"
