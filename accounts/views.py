@@ -21,8 +21,8 @@ from .forms import (
 
 # 사전 설정
 
-SECRETS = BASE_DIR / "secrets.json"
-with open(SECRETS) as f:
+EMAIL_ADDRESS_INFO = BASE_DIR / "mail.json"
+with open(EMAIL_ADDRESS_INFO) as f:
     json_object = json.load(f)
 
 smtp = smtplib.SMTP("smtp.gmail.com", 587)
