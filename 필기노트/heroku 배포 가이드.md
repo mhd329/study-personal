@@ -197,11 +197,12 @@
 
 - [할 일 메모장](https://boiling-temple-99523.herokuapp.com/)
 - [영화 리뷰 팀 프로젝트](https://lit-scrubland-98413.herokuapp.com/)
+- [영화 리뷰 팀 프로젝트 2](http://guarded-tundra-99188.herokuapp.com/)
 
 ---
 
 <div align="center">
 	<h6>
-    	최종 수정일 2022 10 20
+    	최종 수정일 2022 10 25
     </h6>
 </div>
