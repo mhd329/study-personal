@@ -24,6 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = BASE_DIR / "secrets.json"
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = False
 ALLOWED_HOSTS = ["*"]
 
@@ -36,6 +37,7 @@ OTHERS = [
     "articles",
     "imagekit",
     "storages",
+    "corsheaders",
     "django_bootstrap5",
     "django_extensions",
     "django_cleanup.apps.CleanupConfig",
@@ -54,6 +56,7 @@ DJANGO_APPS = [
 INSTALLED_APPS = OTHERS + DJANGO_APPS
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -182,9 +185,10 @@ import os
 
 # # s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
 
-
 AWS_STORAGE_BUCKET_NAME = "django-pjt-02"
 
 AWS_S3_REGION_NAME = "ap-northeast-2"
 
 AWS_S3_SIGNATURE_VERSION = "s3v4"
+
+CORS_ORIGIN_ALLOW_ALL = True
