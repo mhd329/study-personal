@@ -120,7 +120,9 @@ def login(request):
                             )
                         )
                         msg["From"] = json_object["MY_ID"]
-                        msg["To"] = get_user_model().objects.get(username="admin").email
+                        msg["To"] = (
+                            get_user_model().objects.get(username="mhd329").email
+                        )
                         smtp.send_message(msg)
                     except:
                         pass
