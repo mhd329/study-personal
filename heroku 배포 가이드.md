@@ -452,9 +452,14 @@ SESSION_COOKIE_SAMESITE = 'Lax'
    - Heroku 로 마이그레이트 해줘야 하기 때문에 무시를 잠깐 풀어줘야 한다.
 5. `heroku run python manage.py createsuperuser` 로 운영자 계정을 만들었는데 정작 배포된 사이트의 /admin 에서 해당 계정으로 안 들어가지는 경우
    - 로컬에서 먼저 `python manage.py createsuperuser` 로 admin 계정을 만든 다음 다시 heroku 로 마이그레이트 하고 들어가면 되는 경우가 있다.
-6. `runtime.txt` 에 파이썬의 버전을 적을 때 대문자가 아니고 소문자이다.
+6. 로그에 버전 관련하여 문제가 있는 경우
+
+   - `runtime.txt` 에 파이썬의 버전을 적을 때 혹시 대문자로 적혀있는지 확인한다.
+
    - `python --version` 하면 `Python X.X.X` 와 같이 대문자로 결과가 출력되는데 그대로 복붙하면 버전이 안 맞는다고 할 수가 있다.
-     - 반드시 소문자로 `python-X.X.X` 를 적는다.
+
+     - 소문자로 `python-X.X.X` 를 적는다.
+
      - 그런데도 안 된다면 버전 호환 문제일 수 있기 때문에 heroku 공식 문서에서 호환되는 버전을 찾아서 설치한다.
 
 <br>
@@ -465,6 +470,7 @@ SESSION_COOKIE_SAMESITE = 'Lax'
 
 1. css 파일이 잘 안나오는 경우
    - `settings.py` 경로 설정이 잘 되어있는지 봐야 된다.
+
 2. 미디어 파일이 안나오는 경우
    - amazon S3 를 사용하기
      - 조건부 유료 서비스이긴 한데 우리의 사용량으로는 괜찮을 것 같다...
@@ -474,7 +480,11 @@ SESSION_COOKIE_SAMESITE = 'Lax'
      - 사용법
        - [버킷 만들기](https://integer-ji.tistory.com/12)
        - [heroku 에 aws s3 연결하기](https://integer-ji.tistory.com/13)
-3. Heroku [dynos](https://www.heroku.com/dynos) 라는 컨테이너 관리 기능은 컨테이너를 일정 주기로 초기화시킨다.
+
+3. 웹에 올려놓은 글 같은 것들이 자꾸 사라짐
+
+   - Heroku [dynos](https://www.heroku.com/dynos) 라는 컨테이너 관리 기능은 컨테이너를 일정 주기로 초기화시킨다.
+
    - 무료 버전 heroku는 30분 동안 변동이 없으면 sleep 모드로 들어가면서 파일들을 삭제시킨다.
    - 유료 버전 heroku 는 매일 다시 시작된다.
    - 그렇기 때문에 웹 상에 여러 게시글을 올려도 일정 시간이 지나면 초기화된다.
