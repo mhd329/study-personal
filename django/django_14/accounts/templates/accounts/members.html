@@ -3,10 +3,9 @@
 {% block content %}
 
 <div class="container">
-  {% if request.user.is_authenticated %}
   <div>
-    <table class="table">
-      <thead class="table-dark table-bordered table-hover">
+    <table class="table table-bordered table-hover">
+      <thead class="table-dark">
         <tr>
           <th class="col-3">아이디</th>
           <th class="col-3">이메일</th>
@@ -26,12 +25,6 @@
       </tbody>
     </table>
   </div>
-  {% else %}
-  <h1>조회 권한이 없습니다.</h1>
-  <div>
-    <a href="{% url 'accounts:signup' %}" class="btn btn-primary">가입하기</a>
-  </div>
-  {% endif %}
 </div>
 
 {% endblock content %}

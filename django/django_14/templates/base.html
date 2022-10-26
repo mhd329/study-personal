@@ -13,23 +13,6 @@
 </head>
 
 <body>
-  <span class="container p-0 m-0">
-    {% if messages %}
-    {% for message in messages %}
-    <div class="toast show animate__animated animate__fadeIn" role="alert" aria-live="assertive" aria-atomic="true"
-      style="width: 50%; z-index: 100; position: absolute; top: 2rem; left: 2rem;">
-      <div class="toast-header">
-        <strong class="me-auto">알림</strong>
-        <small>11 mins ago</small>
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-      <div {% if message.tags %} class="toast-body text-bg-{{ message.tags }}" {% endif %}>
-        {{ message }}
-      </div>
-    </div>
-    {% endfor %}
-    {% endif %}
-  </span>
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container">
       <a class="navbar-brand" href="{% url 'articles:index' %}">로고</a>
@@ -75,6 +58,24 @@
       </div>
     </div>
   </nav>
+  <div class="container p-0 m-0">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="toast show animate__animated animate__fadeIn text-bg-{{ message.tags }} opacity-75"
+      aria-live="assertive" aria-atomic="true"
+      style="width: 25%; z-index: 100; position: relative; top: 2rem; left: 2rem;">
+      <div class="toast-header">
+        <strong class="me-auto">알림
+        </strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        {{ message }}
+      </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
   {% block content %}
   {% endblock content %}
   <!-- JavaScript Bundle with Popper -->

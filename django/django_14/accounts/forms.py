@@ -1,9 +1,11 @@
-from cProfile import label
 from django import forms
 from .models import UserPhoneNumber
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.forms import (
+    UserCreationForm,
+    UserChangeForm,
+    PasswordChangeForm,
+)
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -11,9 +13,9 @@ class CustomUserCreationForm(UserCreationForm):
         model = get_user_model()
         fields = (
             "username",
-            "email",
             "last_name",
             "first_name",
+            "email",
         )
 
 
@@ -22,10 +24,18 @@ class CustomUserChangeForm(UserChangeForm):
         model = get_user_model()
         fields = (
             "username",
-            "email",
             "last_name",
             "first_name",
+            "email",
         )
+
+
+class CustomPasswordChangeForm(PasswordChangeForm):
+    def clean_new_password1(self):
+        old = self.cleaned_data.get("old_password")
+        new = self.cleaned_data.get("new_password1")
+        if old == new:
+            raise forms.ValidationError("이전 비밀번호와 새 비밀번호가 같습니다.")
 
 
 class UserPhoneNumberForm(forms.ModelForm):
