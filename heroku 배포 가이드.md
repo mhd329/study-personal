@@ -1,3 +1,21 @@
+<br>
+
+[목차로 바로 가기](#목차)
+
+<br>
+
+## Heroku deployment guide v0.2.1
+
+<br>
+
+- 내용 수정
+  - 좀 더 자세하게 씀
+    - ALLOWED_HOSTS
+    - 추가 보안 설정
+    - 헤로쿠 배포 관련 설정
+
+<br>
+
 # Heroku deployment guide v0.2.0
 
 <br>
@@ -147,7 +165,7 @@
 
     - 나는 아래의 방법이 더 편해서 그냥 했다.
 
-  - Django 에서 사용되는 인증키는 반드시 숨겨져야 한다.
+  - **Django 에서 사용되는 인증키는 반드시 숨겨져야 한다.**
 
   - 순서
 
@@ -174,8 +192,6 @@
 
 - `ALLOWED_HOSTS` 에 아래 설정을 입력한다.
 
-  - 오류가 나는 경우 `ALLOWED_HOSTS` 에 `"*"` 을 넣어준다.
-
   ```python
   ALLOWED_HOSTS = [
       "localhost",
@@ -183,10 +199,14 @@
       ".herokuapp.com",
   ]
   ```
+  
+  - 이것은 Host 헤더를 확인하는 작업이다.
 
-  - Host 헤더를 확인한다.
+  - 접근 가능 도메인을 지정해서 관리하는 것이다.
 
-  - 접근 가능 도메인을 지정해서 관리하는 것임
+  - `*` 은 모든 도메인을 허용하는 것이다.
+    - **오류가 나는 경우 `ALLOWED_HOSTS` 에 `"*"` 을 넣어준다.**
+  
 
 <br>
 
@@ -219,7 +239,7 @@ MIDDLEWARE = [
     'csp.middleware.CSPMiddleware',
 ]
 
-ALLOWED_HOSTS = ['exmaple.com']
+ALLOWED_HOSTS = ['위에서 적었던 것들']
 
 SECURE_SSL_REDIRECT = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -234,7 +254,7 @@ SECURE_BROWSER_XSS_FILTER = True
 CSP_DEFAULT_SRC = ("'self'")
 
 CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = ['sub.example.com']
+CORS_ORIGIN_WHITELIST = ['내 Heroku app 주소'] => 주소 끝나는 곳에 '/' 를 빼세요 !!
 CORS_URLS_REGEX = r'^/api/.*$'
 
 CORS_ALLOW_CREDENTIALS = True 
@@ -371,28 +391,29 @@ SESSION_COOKIE_SAMESITE = 'Lax'
 
 - 일단 heroku 가입하기
 
-  - `Procfile` 이라는 파일을 작성한다.
-    - `web: gunicorn [프로젝트 이름].wsgi --log-file -  `
+- 그 다음 루트 경로에 `Procfile` 이라는 파일을 작성한다.
+  - `web: gunicorn [프로젝트 이름].wsgi --log-file -  `
 
-  - `runtime.txt` 이라는 파일을 작성한다.
-    - 자기 파이썬 버전을 적는다.
-    - `python-3.10.7`
+- 루트 경로에 `runtime.txt` 이라는 파일을 작성한다.
+  - 자기 파이썬 버전을 적는다.
+  - `python-3.10.7`
 
-  - `pip install gunicorn whitenoise dj-database-url psycopg2-binary` 를 입력하여 설치한다.
-    - 헤로쿠에서 db는 postgreSQL 에서 관리하게 된다.
+- `pip install gunicorn whitenoise dj-database-url psycopg2-binary` 를 입력하여 설치한다.
 
-    - `psycopg2` 는 postgreSQL 관련 모듈인데 자세히는 잘 모르겠다.
-      - ( 2022. 10. 26 ) 파이썬 3.11 에서는 잘 안되는 이슈가 있다.
+  - 헤로쿠에서 db는 postgreSQL 에서 관리하게 된다.
 
-  - `settings.py` 에 다음 코드를 추가한다.
+  - `psycopg2` 는 postgreSQL 관련 모듈인데 자세히는 잘 모르겠다.
+    - ( 2022. 10. 26 ) 파이썬 3.11 에서는 잘 안되는 이슈가 있다.
 
-      ```python
-      import dj_database_url
-      db_from_env = dj_database_url.config(conn_max_age=500)
-      DATABASES['default'].update(db_from_env)
-      ```
+- `settings.py` 에 다음 코드를 추가한다.
 
-  - 배포 전에 `pip freeze > requirements.txt` 로 받은 것들 적어두기
+    ```python
+    import dj_database_url
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'].update(db_from_env)
+    ```
+
+- 배포 전에 `pip freeze > requirements.txt` 로 받은 것들 적어두기
 
 
 <br>
