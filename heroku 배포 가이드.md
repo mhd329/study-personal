@@ -436,21 +436,24 @@ SESSION_COOKIE_SAMESITE = 'Lax'
 2. `git add .`
 3. `git commit -m "init"`
 4. `git push origin master`
+   - 기존 git 저장소에서 관리하여 이미 `.git` 폴더가 있는 경우 위의 1~4 과정은 생략하고 아래부터 시작한다.
 
-- 기존 git 저장소에서 관리하여 이미 `.git` 폴더가 있는 경우 위의 1~4 과정은 생략하고 아래부터 시작한다.
 
-1. `heroku login`
+5. `heroku login`
+
    - 그 다음 아무 키나 누르면 잠깐 멈췄다가 로그인 하라고 새 창이 뜬다.
+
    - 클릭하면 창이 바뀌면서 로그인이 된다.
-2. `heroku create`
+
+6. `heroku create`
    - 이미 배포를 했고 업데이트 하려는 경우에는 여러번 create 할 필요는 없다.
-     - 그러한 경우 1\~3 까지 진행하고 6\~7 과정만 진행하면 된다.
-3. ` git push heroku master`
+     - 그러한 경우 1\~3 까지 진행하고 7\~ 과정만 진행하면 된다.
+7. ` git push heroku master`
    - [에러](#3-에러-모음집)가 나면 `git push heroku HEAD:master` 를 하라는데 써본적이 없어서 잘 모르겠다...
-4. `heroku run python manage.py migrate`
-5. `heroku run python manage.py createsuperuser`
-6. `heroku open`
-   - 잘 된다면 페이지 배포가 완료된 것이다 !
+8. `heroku run python manage.py migrate`
+9. `heroku run python manage.py createsuperuser`
+10. `heroku open`
+    - 잘 된다면 페이지 배포가 완료된 것이다 !
 
 <br>
 
