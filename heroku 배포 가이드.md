@@ -1,6 +1,22 @@
+
+
+
+
+
+
 <br>
 
 [목차로 바로 가기](#목차)
+
+<br>
+
+## Heroku deployment guide v0.2.2
+
+<br>
+
+- 내용 수정
+  - 스태틱, 미디어 루트 경로 간소화
+  - 1-4. 항목에서 db관련 설명 추가
 
 <br>
 
@@ -77,22 +93,16 @@
     - 
         ```python
         STATIC_URL = "/static/"
-        STATIC_DIR = BASE_DIR / "static"
-        
-        STATICFILES_DIRS = [
-            STATIC_DIR,
-        ]
-        
-        STATIC_ROOT = BASE_DIR / "static_root"
+        STATIC_ROOT = BASE_DIR / "staticfiles"
         ```
-
+        
     - 프로젝트 루트 경로 ( `settings.py` 가 있는 폴더 ( 프로젝트 이름으로 된 폴더 ) 가 들어있는 곳 ) 에 static_root 라는 경로를 만들어주고 거기에서 static 파일들을 관리 할 것이다.
-
+    
   - media 파일 관련 ( 미디어 파일이 안 올라간다면 아래의 과정에서 빠진 것이 있는지 점검해보세요~!! )
-
+  
     - `Pillow` 를 설치해준다.
       - `pip install Pillow`
-
+  
     - `imagekit` 을 설치해준다.
       - `pip install django-imagekit`
 
@@ -103,34 +113,27 @@
     - 
       ```python
       MEDIA_URL = "/media/"
-      
-      MEDIA_DIR = BASE_DIR / "media"
-      
-      MEDIAFILES_DIRS = [
-          MEDIA_DIR,
-      ]
-      
-      MEDIA_ROOT = BASE_DIR / "media"
+      MEDIA_ROOT = BASE_DIR / "mediafiles"
       ```
-
+      
     - 프로젝트 루트 경로 ( `settings.py` 가 있는 폴더 ( 프로젝트 이름으로 된 폴더 ) 가 들어있는 곳 ) 에 media_root 라는 경로를 만들어주고 거기에서 media 파일들을 관리 할 것이다.
-
+    
     - `urls.py` 에서 미디어 파일 경로 추가해주기
-
+    
     - `urlpatterns` 밖에 경로를 추가해준다.
-
+    
       ```python
       urlpatterns = [
           ...
       ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
       ```
-
+    
     - `models.py` 에 문제가 없는지 점검한다.
-
+    
     - `views.py` 의 미디어 파일을 사용하려는 함수에 `request.FILES` 가 잘 있는지 점검한다.
-
+    
     - `templates` 폴더에서 미디어 파일을 사용려는 `html` 템플릿에 `enctype="multipart/form-data"` 가 잘 있는지 점검한다.
-
+  
 - WhiteNoise 설치
 
   - 배포 전에 `DEBUG = False` 로 해야한다.
@@ -398,14 +401,14 @@ SESSION_COOKIE_SAMESITE = 'Lax'
   - 자기 파이썬 버전을 적는다.
   - `python-3.10.7`
 
-- `pip install gunicorn whitenoise dj-database-url psycopg2-binary` 를 입력하여 설치한다.
+- `pip install gunicorn dj-database-url psycopg2-binary` 를 입력하여 설치한다.
 
   - 헤로쿠에서 db는 postgreSQL 에서 관리하게 된다.
 
-  - `psycopg2` 는 postgreSQL 관련 모듈인데 자세히는 잘 모르겠다.
+  - `psycopg2` 와 `dj-database-url` 는 postgreSQL 관련 모듈인데 자세히는 잘 모르겠다.
     - ( 2022. 10. 26 ) 파이썬 3.11 에서는 잘 안되는 이슈가 있다.
 
-- `settings.py` 에 다음 코드를 추가한다.
+- `settings.py` 의 `DATABASES` 아래에 다음 코드를 추가한다.
 
     ```python
     import dj_database_url
