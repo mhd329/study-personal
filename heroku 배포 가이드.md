@@ -93,6 +93,11 @@
     - 
         ```python
         STATIC_URL = "/static/"
+        
+        STATICFILES_DIRS = [
+            BASE_DIR / "static",
+        ]
+        
         STATIC_ROOT = BASE_DIR / "staticfiles"
         ```
         
@@ -105,10 +110,10 @@
   
     - `imagekit` 을 설치해준다.
       - `pip install django-imagekit`
-
+  
     - `"imagekit"` 을 `INSTALLED_APPS` 에 추가해준다.
       - 미디어 파일들도 한 곳에 모아놓고 관리해야 한다.
-
+  
     - `settings.py` 에 아래의 코드를 입력한다.
     - 
       ```python
