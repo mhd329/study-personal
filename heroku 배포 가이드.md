@@ -470,25 +470,30 @@ SESSION_COOKIE_SAMESITE = 'Lax'
 
 <br>
 
-1. 깃 배쉬에서 로그인이 먹통일 때가 있는데 vscode 로 하면 잘 될 수도 있다.
+1. dotenv 인식 오류
+   - dotenv 로 시크릿키 분리할 때 인식이 안되는 경우가 있다.
+   - vscode 켰을 때 작업 표시줄 바로 위에 보이는 파란 상태줄이 있다.
+   - 거기 오른쪽 하단 구석에 파이썬 버전이 표시되어있는 숫자 >>> 3.9.13 ('venv': venv) <<< 이런식으로 써있는 항목이 있다.
+   - 여기 누른다음 Python 3.X.X 64-bit 비트로 바꾸면 인식이 될 수가 있다.
+2. 깃 배쉬에서 로그인이 먹통일 때가 있는데 vscode 로 하면 잘 될 수도 있다.
    - 로그인 하라고 뜨고 아무 키나 눌렀을 때 바로 페이지가 떠야 함
-2. `git push heroku master` 할 때 로그에 `heroku config:set DISABLE_COLLECTSTATIC=1` 가 뜨면서 안되는 경우
+3. `git push heroku master` 할 때 로그에 `heroku config:set DISABLE_COLLECTSTATIC=1` 가 뜨면서 안되는 경우
    - `STATIC_ROOT` 가 제대로 설정되어 있지 않아서 발생하는 문제이다.
      - `STATIC_ROOT` 가 제대로 설정되어있는지 점검한다.
    - 만약에 그래도 안되면 콘솔에 `heroku config:set DISABLE_COLLECTSTATIC=1` 를 그대로 친 다음 푸시하면 잘 된다.
    - 아마 자주 발생하는 에러일것 같다.
-3. `git push heroku master` 할 때 자꾸 `rejected` 가 되는데, 로그에 `Building wheel for twisted-iocpsupport (pyproject.toml) did not run successfully` 라는 기록이 있는 경우
+4. `git push heroku master` 할 때 자꾸 `rejected` 가 되는데, 로그에 `Building wheel for twisted-iocpsupport (pyproject.toml) did not run successfully` 라는 기록이 있는 경우
    - pip list 에 `twisted-iocpsupport` 이라는 모듈이 설치되어 있어서 발생하는 오류이다.
      - 이것이 무엇인지 대충 찾아보았는데 문제가 발생하는 이유를 [스택 오버플로우](https://stackoverflow.com/questions/67218268/issue-deploying-django-app-onto-heroku-due-to-twisted-iocpsupport)에서 찾아보았다.
        - `twisted-iocpsupport` 는 Windows 전용 플랫폼 모듈이다.
        - Heroku 는 리눅스 기반 플랫폼이다.
    - `pip uninstall twisted-iocpsupport` 하기
    - `requirements.txt` 에서 `twisted-iocpsupport` 를 지우고 다시 `requirements.txt` 를 만들기
-4. `heroku run python manage.py migrate` 가 안된다면 `.gitignore` 에서 `.sqlite3` 를 제외하면 된다.
+5. `heroku run python manage.py migrate` 가 안된다면 `.gitignore` 에서 `.sqlite3` 를 제외하면 된다.
    - Heroku 로 마이그레이트 해줘야 하기 때문에 무시를 잠깐 풀어줘야 한다.
-5. `heroku run python manage.py createsuperuser` 로 운영자 계정을 만들었는데 정작 배포된 사이트의 /admin 에서 해당 계정으로 안 들어가지는 경우
+6. `heroku run python manage.py createsuperuser` 로 운영자 계정을 만들었는데 정작 배포된 사이트의 /admin 에서 해당 계정으로 안 들어가지는 경우
    - 로컬에서 먼저 `python manage.py createsuperuser` 로 admin 계정을 만든 다음 다시 heroku 로 마이그레이트 하고 들어가면 되는 경우가 있다.
-6. 로그에 버전 관련하여 문제가 있는 경우
+7. 로그에 버전 관련하여 문제가 있는 경우
 
    - `runtime.txt` 에 파이썬의 버전을 적을 때 혹시 대문자로 적혀있는지 확인한다.
 
