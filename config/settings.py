@@ -25,16 +25,21 @@ SECRET_KEY = BASE_DIR / "secrets.json"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
-ALLOWED_HOSTS = ["*"]
+DEBUG = True
+ALLOWED_HOSTS = [
+    # "localhost",
+    # "127.0.0.1",
+    # ".herokuapp.com",
+]
 
 
 # Application definition
 
 OTHERS = [
-    "index",
-    "accounts",
-    "articles",
+    "apps.index",
+    "apps.accounts",
+    "apps.articles",
+    "corsheaders",
     "imagekit",
     "storages",
     "django_bootstrap5",
@@ -54,6 +59,7 @@ DJANGO_APPS = [
 
 INSTALLED_APPS = OTHERS + DJANGO_APPS
 
+# "corsheaders.middleware.CorsMiddleware",
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
@@ -165,26 +171,47 @@ import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES["default"].update(db_from_env)
 
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+
+# SECURE_SSL_REDIRECT = True
+# SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 # 미디어 파일들
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+
+MEDIA_DIR = BASE_DIR / "media"
+
+MEDIAFILES_DIRS = [
+    MEDIA_DIR,
+]
+
+MEDIA_ROOT = BASE_DIR / "media_root"
+
+# CORS 설정
+
+# CORS_ORIGIN_ALLOW_ALL = False
+# CORS_ORIGIN_WHITELIST = (
+#     "https://guarded-tundra-99188.herokuapp.com",
+#     "http://localhost:8000",
+#     "http://127.0.0.1:8000",
+# )
 
 # aws s3 연결
 
-DEFAULT_FILE_STORAGE = "config.storages.MediaStorage"
-STATICFILES_STORAGE = "config.storages.StaticStorage"
+# DEFAULT_FILE_STORAGE = "config.storages.MediaStorage"
+# STATICFILES_STORAGE = "config.storages.StaticStorage"
 
-MEDIAFILES_LOCATION = "media"
-STATICFILES_LOCATION = "static"
+# MEDIAFILES_LOCATION = "media"
+# STATICFILES_LOCATION = "static"
 
-from boto.s3.connection import S3Connection
-import os
+# from boto.s3.connection import S3Connection
+# import os
 
 # # s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
 
-AWS_STORAGE_BUCKET_NAME = "django-pjt-02"
+# AWS_STORAGE_BUCKET_NAME = "django-pjt-02"
 
-AWS_S3_REGION_NAME = "ap-northeast-2"
+# AWS_S3_REGION_NAME = "ap-northeast-2"
 
-AWS_S3_SIGNATURE_VERSION = "s3v4"
+# AWS_S3_SIGNATURE_VERSION = "s3v4"
