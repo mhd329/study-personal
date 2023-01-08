@@ -1,3 +1,4 @@
+'''
 import calendar
 
 x, y = map(int, input().split())
@@ -17,3 +18,16 @@ if d == 5:
     print("SAT")
 if d == 6:
     print("SUN")
+'''
+x, y = map(int, input().split())
+
+month = (0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30)
+day = ("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT")
+
+d = 0
+for m in range(0, x):
+    d += month[m]
+else:
+    d += y
+
+print(day[d % 7])
