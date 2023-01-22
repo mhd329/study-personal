@@ -6,4 +6,4 @@ for _ in range(N):
     w, v = map(int, sys.stdin.readline().split())
     for i in range(w, K + 1):
         dp[i] = max(dp[i - w] + v, dp[i])
-print(dp[-1])
+print(max(dp))
