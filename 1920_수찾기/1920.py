@@ -20,28 +20,23 @@ for j in m:
     except:
         print(0)
 '''
-# 정석 풀이
+# 정석 풀이 (함수를 쓰지 않음)
 N = int(sys.stdin.readline())
 n = [*map(int, sys.stdin.readline().split())]
 n.sort()
 M = int(sys.stdin.readline())
 m = [*map(int, sys.stdin.readline().split())]
 for i in m:
-    mid = N // 2
-    start = n[0:mid]
-    end = n[mid:]
-    while 1:
-        if mid == 1:
-            print(1)
-            break
-        elif i >= start[0] and i <= start[mid - 1]:
-            mid //= 2
-            end = start[mid:]
-            start = start[0:mid]
-        elif i >= end[0] and i <= end[-1]:
-            mid //= 2
-            start = end[0:mid]
-            end = end[mid:]
+    flag = 0
+    f = 0
+    b = N - 1
+    while f <= b:
+        mid = (f + b) // 2
+        if i < n[mid]:
+            b = mid - 1
+        elif i > n[mid]:
+            f = mid + 1
         else:
-            print(0)
+            flag = 1
             break
+    print(1 if flag else 0)
