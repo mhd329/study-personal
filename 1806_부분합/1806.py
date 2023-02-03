@@ -26,3 +26,29 @@ interval(N, S, n)
 
 # 문제를 잘 읽자!!!
 # 합이 S 인 것이 아니라 합이 S 이상이 되는 모든 값...
+
+# 더 깔끔한 코드
+'''
+import sys
+input = sys.stdin.readline
+
+N, S = map(int, input().split())
+seq = list(map(int, input().split()))
+
+R = 0
+sum = 0
+ans = N+1
+
+for L in range(0, N):
+    while (R < N and sum < S):
+        sum += seq[R]
+        R += 1
+    if sum >= S:
+        ans = min(ans, R-L)
+    sum -= seq[L]
+
+if ans == N+1:
+    ans = 0
+
+print(ans)
+'''
