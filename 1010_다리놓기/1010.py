@@ -32,3 +32,15 @@ for _ in range(T):
     n, m = map(int, input().split())
     bridge = factorial(m) // (factorial(n) * factorial(m - n))
     print(bridge)
+
+# 쉬운 풀이
+case = int(input())
+
+for i in range(case):
+    west_site, east_site = map(int, input().split())
+    n, m = 1, 1
+    for j in range(east_site, east_site-west_site, -1):
+        n *= j
+    for j in range(1, west_site+1):
+        m *= j
+    print(n//m)
