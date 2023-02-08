@@ -71,9 +71,13 @@ N, M = map(int, input().split())
 sieve = [_ for _ in range(N, M + 1)]
 cnt = 0
 total = M - N + 1
-for i in range(2, int((M + 1) ** 0.5)):
-    ii = i * i
-    for j in range(N, M + 1, ii):
-        if not j % ii and sieve[j - N]:
-            sieve[j - N] = 0
+for i in range(2, int((M ** 0.5) + 1)):
+    i *= i
+    for j in range((int((N - 1) // i) + 1) * i, M + 1, i):
+        if sieve[N - j]:
+            sieve[N - j] = 0
             cnt += 1
+print(total - cnt)
+# for 문의 시작조건이면서 그것이 동시에 제곱수임
+# 식이 (int(N // i) + 1) * i 이고 N 이 8 인 경우와 같이 N 이 제곱수로 나눠지는 수로 시작하면 자기 자신은 제외하고 계산이 시작됨
+# 그래서 자기 자신에서 1 을 뺀 값부터 계산해야 자기 자신도 계산이 됨
