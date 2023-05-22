@@ -13,12 +13,14 @@ const styles = {
 };
 
 function Toolbar(props) {
+    // 3개의 props를 받음
     const { isLoggedIn, onClickLogin, onClickLogout } = props;
 
     return (
         <div style={styles.wrapper}>
-            {/* isLoggedIn이 true이면 && 뒤의 코드가 실행됨 */}
-            {/* isLoggedIn이 false이면 && 앞의 코드만 실행됨 */}
+            {/* isLoggedIn 뒤는 항상 참(문자열) */}
+            {/* isLoggedIn이 true이면 && 뒤가 렌더링됨 */}
+            {/* isLoggedIn이 false이면 && 뒤의 코드는 계산에서 아예 제외됨 (확정적인 제외) */}
             {isLoggedIn && <span style={styles.greeting}>환영합니다!</span>}
 
             {isLoggedIn ? (

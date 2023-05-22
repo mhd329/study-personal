@@ -30,9 +30,8 @@ function ConfirmButton(props) {
     const [isConfirmed, setIsConfirmed] = useState(false);
 
     const handleConfirm = () => {
-        setIsConfirmed((prevIsConfirmed) => {
-            return !prevIsConfirmed
-        })
+        setIsConfirmed((prevIsConfirmed) => !prevIsConfirmed)
+        // 위 코드는 setIsConfirmed(true)와 같다.
     }
 
     return (
@@ -42,4 +41,4 @@ function ConfirmButton(props) {
     )
 }
 
-export default ConfirmButton
+export default ConfirmButton;
