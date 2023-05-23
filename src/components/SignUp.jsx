@@ -4,13 +4,9 @@ function SignUp(props) {
     const [name, setName] = useState("");
     const [gender, setGender] = useState("male");
 
-    const handleChangeName = (event) => {
-        setName(event.target.value);
-    };
+    const handleChangeName = event => setName(event.target.value);
 
-    const handleChangeGender = (event) => {
-        setGender(event.target.value);
-    };
+    const handleChangeGender = event => setGender(event.target.value);
 
     const handleSubmit = (event) => {
         alert(`이름: ${name}, 성별: ${gender === "male" ? "남자" : "여자"}`);

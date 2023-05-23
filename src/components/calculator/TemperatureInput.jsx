@@ -18,7 +18,7 @@ function TemperatureInput(props) {
                 온도를 입력해주세요(단위: {scaleName[props.scale]})
             </legend>
             {/* input태그 내부의 값이 변하면 handleChange도 변함(handleChange에서는 event를 감지) */}
-            <input value={props.temperature} onChange={handleChange} />
+            <input type="number" value={props.temperature} onChange={handleChange} />
         </fieldset>
     );
 }
