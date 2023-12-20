@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div>
+    <table class="table table-bordered table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th class="col-3">아이디</th>
+          <th class="col-3">이메일</th>
+          <th class="col-3">연락처</th>
+          <th class="col-3">가입일</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <th><a href="{% url 'accounts:profile' user.pk %}">{{ user.username }}</a></th>
+          <td>{{ user.email }}</td>
+          <td>{{ user.userphonenumber.phone }}</td>
+          <td>{{ user.date_joined|date:"y년 m월 d일 f:s" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock content %}

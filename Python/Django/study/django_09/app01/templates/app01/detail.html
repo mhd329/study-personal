@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <h3>
+    {{ movie.title }}
+  </h3>
+  <div class="card">
+    <div class="card-body">
+      {{ movie.img }}
+      <p class="card-text">{{ movie.summary }}</p>
+      <p class="card-text">{{ movie.release }} | {{ movie.director }} | {{ movie.running_time }}</p>
+      <p class="card-text">평점 : {{ movie.avg_score }}</p>
+      <p class="card-text">투표수 : {{ movie.vote_cnt }}</p>
+      <form action="{% url 'app01:add-score' movie.id %}" method="POST">
+        {% csrf_token %}
+        <input name="score" type="number" min="1" max="10">
+        <input class="btn btn-outline-primary" type="submit" value="평점 추가하기">
+      </form>
+      <a href="{% url 'app01:update' movie.id %}" class="card-link btn btn-outline-primary my-3 mx-2"
+        role="button">수정</a>
+      <a href="{% url 'app01:delete' movie.id %}" class="card-link btn btn-outline-primary my-3 mx-2"
+        role="button">삭제</a>
+      <a href="{% url 'app01:movies' %}" class="card-link btn btn-outline-primary my-3 mx-2" role="button">목록으로</a>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

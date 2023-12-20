@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ article.title }}</h1>
+<p>{{ article.content }}</p>
+<hr>
+<p>{{ article.created_at }} | {{ article.updated_at }} | 변경 횟수 : {{ article.change_cnt }}</p>
+<a href="{% url 'app01:create' article.id %}">수정</a> | <a href="{% url 'app01:delete' article.id %}">삭제</a>
+<br>
+<a href="{% url 'app01:noticeboard' %}">목록으로</a>
+
+{% endblock content %}

@@ -1,0 +1,18 @@
+* {
+  font-family: 'MaruBuriLight';
+}
+
+a {
+  text-decoration: none;
+}
+
+.cardscroll {
+  height: 200px;
+  overflow: auto;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.card {
+  overflow: auto;
+}
