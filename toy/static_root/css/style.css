@@ -1,0 +1,19 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+* {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.navbar {
+  z-index: 120;
+}
+
+a {
+  text-decoration: none;
+}
+
+.carousel-control-next,
+.carousel-control-prev,
+.carousel-indicators {
+  filter: invert(100%);
+}

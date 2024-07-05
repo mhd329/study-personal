@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <div class="text-center my-3">
+    <h3 class="m-0">심신을 안정시켜주는 사진들...</h3>
+  </div>
+  <div class="text-center">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+          class="active text-primary" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+          aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+          aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+          aria-label="Slide 4"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
+          aria-label="Slide 5"></button>
+      </div>
+      <div class="carousel-inner text-center mt-1 mb-5">
+        <div class="carousel-item active">
+          <img src="{% static 'images/lop.jpg' %}" class="d-inline-block" style="width: auto; height: 400px;" alt="">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'images/threesheeps.jpg' %}" class="d-inline-block" style="width: auto; height: 400px;"
+            alt="">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'images/cap.png' %}" class="d-inline-block" style="width: auto; height: 400px;" alt="">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'images/bono.jpg' %}" class="d-inline-block" style="width: auto; height: 400px;" alt="">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'images/lamb.jpg' %}" class="d-inline-block" style="width: auto; height: 400px;" alt="">
+        </div>
+      </div>
+      <button class="carousel-control-prev text-primary" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next text-primary" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div>
+    <table class="table table-bordered table-hover text-center">
+      <thead class="table-dark">
+        <tr>
+          <th class="col-3">아이디</th>
+          <th class="col-3">이메일</th>
+          <th class="col-3">연락처</th>
+          <th class="col-3">가입일</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <th><a href="{% url 'accounts:profile' user.pk %}">{{ user.username }}</a></th>
+          <td>{{ user.email }}</td>
+          <td>{{ user.userphonenumber.phone }}</td>
+          <td>{{ user.date_joined|date:"y년 m월 d일 f:s" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock content %}
