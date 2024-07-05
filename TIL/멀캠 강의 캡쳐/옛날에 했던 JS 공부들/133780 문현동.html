@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+ <head>
+  <title>
+주문하기
+  </title>
+  <style>
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+  </style>
+ </head>
+<body bgcolor="black">
+<hr />
+<p>
+ <table border="1" width="500" style="font-family:굴림 ;font-size:9pt ;color:rgb(227, 66, 52) ;" align="center">
+  <form>
+   <tr> <th bgcolor="#333300" width="500" colspan="2" height="25"> <h1>주문서 작성</h1> </th> </tr>
+   <tr> <th bgcolor="#ffff99" width="100" height="25"> 상품 코드 </th> <td bgcolor="gray" width="400" height="25"> <input type="text" size="50" /> </td> </tr>
+   <tr> <th bgcolor="#ffff99" width="100" height="25"> 받는 사람 </th> <td bgcolor="gray" width="400" height="25"> <input type="text" size="50" /> </td> </tr>
+   <tr> <th bgcolor="#ffff99" width="100" height="25"> 고객 연락처 </th> <td bgcolor="gray" width="400" height="25"> <select size="1">
+    <option value="SKT">SKT</option>
+    <option value="LGT">LGT</option>
+    <option value="KT">KT</option>
+    <option value="etc">etc</option>
+     </select>
+      <input type="text" maxlength="4" size="4" />
+-
+      <input type="text" maxlength="4" size="4" />
+-
+      <input type="text" maxlength="4" size="4" />
+     </td> </tr>
+   <tr> <th bgcolor="#ffff99" width="100" height="25">배송지 선택</th> <td bgcolor="gray" width="400" height="25"> <select size="2" multiple="multiple">
+    <option>기존 배송지</option>
+    <option>새로운 배송지</option> </select>
+   </td> </tr>
+    <tr> <th bgcolor="#ffff99" rowspan="2" width="100" height="25"> 배송지주소 </th> <td bgcolor="gray" width="400" height="25">
+     <input type="text" maxlength="4" size="4" />
+-
+     <input type="text" maxlength="4" size="4" />
+     <input type="submit" value="우편번호찾기" />
+
+    </td> </tr>
+
+     <tr> <td bgcolor="gray" width="400" height="25"> <input type="text" size="50" />
+
+    </td> </tr>
+
+     <tr> <th bgcolor="#ffff99" width="400" height="25"> 결제 방법 </th> <td bgcolor="gray" width="400" height="25">
+     <input type="checkbox" checked="checked" />&nbsp;온라인 결제&nbsp;&nbsp;
+     <input type="checkbox" />&nbsp;신용/체크카드 결제&nbsp;&nbsp;
+     <input type="checkbox" />&nbsp;간편 결제
+    </td> </tr>
+   <tr> <th bgcolor="#ffff99" width="100" height="25"> 배송 메시지 </th> <td bgcolor="gray" width="400" height="25">
+    <textarea name="request" rows="3" cols="50">택배기사님께 요청 사항</textarea>
+   </td> </tr>
+    <tr> <th bgcolor="#ffff99" width="100" height="25"> 사진 올리기 </th> <td bgcolor="gray" width="400" height="25"> <input type="file" /> </td>
+   </tr>
+    <tr> <td width="500" bgcolor="#333300" colspan="2" height="25" align="center">
+      <input type="submit" value="완료" />&nbsp;&nbsp;
+      <input type="reset" value="새로 작성" />
+     </td> </tr>
+    </form>
+   </table>
+   </p>
+   <hr />
+   <p>
+   <div align="right">
+   <a href="http://www.naver.com/" target="_blank">&lt;홈으로 돌아가기&gt;</a>
+   </div>
+  </p>
+ </body>
+</html>

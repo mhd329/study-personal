@@ -1,0 +1,11 @@
+go
+rust
+scheme
+javascript
+kotlin
+clojure
+
+
+공룡책
+맨먼스 미신
+수학자 컴퓨터를 만들다 http://www.yes24.com/Product/goods/1460095
