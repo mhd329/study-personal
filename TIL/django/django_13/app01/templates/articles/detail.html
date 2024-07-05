@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      {% if article.image %}
+      <img src="{{ article.image.url }}" ali="{{ article.image }}">
+      {% endif %}
+      <h6 class="card-subtitle mb-2 text-muted">{{ article.title }}</h6>
+      <p class="card-text">{{ article.content }}</p>
+      <hr>
+      <p class="card-text">{{ article.created_at }}</p>
+      <p class="card-text">{{ article.updated_at }}</p>
+    </div>
+  </div>
+  <div>
+    <a href="{% url 'articles:update' article.pk %}" class="btn btn-primary">수정</a>
+    <a href="{% url 'articles:delete' article.pk %}" class="btn btn-primary">삭제</a>
+    <a href="{% url 'articles:index' %}" class="btn btn-outline-primary">목록으로</a>
+  </div>
+</div>
+
+{% endblock content %}

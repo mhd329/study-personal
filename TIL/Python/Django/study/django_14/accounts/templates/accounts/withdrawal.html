@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container w-25">
+  <form action="" method="POST">
+    {% csrf_token %}
+    <h2 class="card-title">정말로 탈퇴 하시겠습니까?</h2>
+    <input class="btn btn-danger" type="submit" value="예">
+    <a href="{% url 'accounts:profile' user.pk %}" class="btn btn-primary">아니오</a>
+  </form>
+</div>
+
+{% endblock content %}

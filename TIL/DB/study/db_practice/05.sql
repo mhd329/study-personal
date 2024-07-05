@@ -1,0 +1,1 @@
+select count(*) from healthcare where va_left=2.0 and va_right=2.0;

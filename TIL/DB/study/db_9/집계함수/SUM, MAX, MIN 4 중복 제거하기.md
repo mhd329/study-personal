@@ -1,0 +1,7 @@
+```mysql
+SELECT COUNT(DISTINCT NAME) FROM ANIMAL_INS WHERE NAME IS NOT NULL;
+```
+
+
+
+처음에 `COUNT(DISTINCT NAME)` 문법이 생각이 안나서 좀 헤맸다.

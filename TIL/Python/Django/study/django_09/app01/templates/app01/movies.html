@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <table class="table table-hover table-bordered text-center">
+    <thead>
+      <tr class="row">
+        <th class="col-1">id</th>
+        <th class="col-7">영화 제목</th>
+        <th class="col-1">개봉일</th>
+        <th class="col-1">감독</th>
+        <th class="col-1">상영 시간</th>
+        <th class="col-1">평점</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for movie in movies %}
+      <tr class="row">
+        <th class="col-1">{{ movie.id }}</th>
+        <td class="col-7"><a href="{% url 'app01:detail' movie.id %}">{{ movie.title }}</a></td>
+        <td class="col-1">{{ movie.release }}</td>
+        <td class="col-1">{{ movie.director }}</td>
+        <td class="col-1">{{ movie.running_time }}</td>
+        <td class="col-1">{{ movie.avg_score }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="d-flex my-0">
+    <div class="d-flex my-3 ms-auto">
+      <a class="btn btn-outline-primary" href="{% url 'app01:create' %}" role="button">영화 추가</a>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

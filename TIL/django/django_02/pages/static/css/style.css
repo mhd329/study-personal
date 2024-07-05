@@ -1,0 +1,60 @@
+@font-face {
+    font-family: 'Y_Spotlight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/Y_Spotlight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+  font-family: 'Y_Spotlight';
+  background-color: black;
+}
+
+.pick {
+  background-color: white;
+  font-family: 'Y_Spotlight';
+  font-size: xx-large;
+  padding: 1rem 5rem;
+  border-radius: 1rem;
+}
+
+.pick:hover {
+  background-color: yellow;
+}
+
+.main {
+  text-align: center;
+}
+
+.lotto-number {
+  display: flex;
+  width: 5rem;
+  height: 5rem;
+  margin: .5rem;
+  background-color: rgb(55, 196, 55);
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.lotto-rank {
+  display: flex;
+  width: 5rem;
+  height: 5rem;
+  margin: .5rem;
+  background-color: white;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.lotto-container {
+  display: flex;
+  justify-content: center;
+  animation: bounceInDown;
+  animation-duration: 0.5s;
+}

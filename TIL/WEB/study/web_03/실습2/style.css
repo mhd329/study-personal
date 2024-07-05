@@ -1,0 +1,45 @@
+/* 아래에 CSS를 작성해주세요. */
+h3 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+p {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.image-section {
+    width: 300px;
+}
+.product-image {
+    width: 100%;
+    border-radius: 1%;
+}
+.product-explanation {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+}
+.product-name {
+    font-size: 20px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+}
+.company {
+    font-size: 16px;
+    color: rgb(151, 151, 151);
+}
+.price {
+    font-size: 25px;
+}
+.sale {
+    color: rgb(126, 204, 223);
+}
+.review {
+    color: rgb(151, 151, 151);
+}

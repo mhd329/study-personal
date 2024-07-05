@@ -1,0 +1,13 @@
+```mysql
+SELECT ANIMAL_TYPE, COUNT(*)
+FROM ANIMAL_INS
+WHERE ANIMAL_TYPE = 'Cat' OR ANIMAL_TYPE = 'Dog'
+GROUP BY ANIMAL_TYPE
+ORDER BY ANIMAL_TYPE;
+```
+
+
+
+`WHERE ANIMAL_TYPE = 'Cat' OR ANIMAL_TYPE = 'Dog'`
+
+문제에서 주어지는 테이블에 고양이와 개 밖에 없어서 WHERE 절을 빼도 정답으로 나오긴 한다.

@@ -1,0 +1,12 @@
+```mysql
+SELECT MIN(DATETIME) FROM ANIMAL_INS;
+```
+
+
+
+아래처럼 해도 정답이 나온다.
+
+```mysql
+SELECT DATETIME FROM ANIMAL_INS ORDER BY DATETIME LIMIT 1;
+```
+

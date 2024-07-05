@@ -1,0 +1,1 @@
+select count(*) from healthcare where gender=1;

@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lotto</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div class="main">
+    <button id="lotto-btn" class="pick">뽑기</button>
+    <div id="res"></div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  <script>
+    const lotto_button = document.querySelector("#lotto-btn")
+    lotto_button.addEventListener("click", function() {
+      
+      const rank = "{{rank}}"
+      const rank_div = document.createElement("div")
+      rank_div.classList.add("lotto-rank")
+      rank_div.innerText = rank
+
+      const container = document.createElement("div")
+      container.classList.add("lotto-container")
+
+      const row_num_1 = "{{nums}}".replace('[', '') 
+      const row_num_2 = row_num_1.replace(']', '') 
+      const num = row_num_2.split(',')
+
+      for (i of num) {
+        const lotto_num = document.createElement("div")
+        lotto_num.classList.add("lotto-number")
+        const num = parseInt(i)
+        if (num < 11) {
+          lotto_num.style.backgroundColor = 'yellow'
+        }
+        else if (num < 21) {
+          lotto_num.style.backgroundColor = 'blue'
+        }
+        else if (num < 31) {
+          lotto_num.style.backgroundColor = 'red'
+        }
+        else if (num < 41) {
+          lotto_num.style.backgroundColor = 'grey'
+        }
+        else {
+        }
+        lotto_num.innerText = num
+        container.appendChild(lotto_num)
+        const res = document.querySelector("#res")
+        res.appendChild(container)
+      }
+      if (rank === '1등') {
+        rank_div.style.color = 'red'
+      }
+      else if (rank === '2등') {
+        rank_div.style.color = 'orange'
+      }
+      else if (rank === '3등') {
+        rank_div.style.color = 'yellow'
+      }
+      else if (rank === '4등') {
+        rank_div.style.color = 'green'
+      }
+      else if (rank === '5등') {
+        rank_div.style.color = 'blue'
+      }
+      else {
+      }
+      container.appendChild(rank_div)
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% load mathfilters %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>
+    calc.html
+    <br>
+    {{ num1 }} + {{ num2 }} = {{ num1|add:num2 }}
+    <br>
+    {{ num1 }} - {{ num2 }} = {{ num1|sub:num2 }}
+    <br>
+    {{ num1 }} * {{ num2 }} = {{ num1|mul:num2 }}
+    <br>
+    {{ num1 }} // {{ num2 }} = {{ num1|div:num2 }}
+  </h1>
+</body>
+
+</html>
